@@ -423,12 +423,12 @@ public class HuygensIng {
       .withCollection("emcardcatalogs", coll -> coll
         .withAbstractType("collective")
         .withProperty("naam", localProperty("emcardcatalog_name"))
-        .withDisplayName(localProperty("emcardcatalog_name", stringToUnencodedStringOf()))
+        .withDisplayName(localProperty("emcardcatalog_name"))
       )
       .withCollection("emconsulates", coll -> coll
         .withAbstractType("collective")
         .withProperty("naam", localProperty("emconsulate_name"))
-        .withDisplayName(localProperty("emconsulate_name", stringToUnencodedStringOf()))
+        .withDisplayName(localProperty("emconsulate_name"))
       )
       .withCollection("emcards", coll -> coll
         .withAbstractType("document")
@@ -454,7 +454,7 @@ public class HuygensIng {
       .withCollection("emlocations", coll -> coll
         .withAbstractType("location")
         .withProperty("naam", localProperty("emlocation_name"))
-        .withDisplayName(localProperty("emlocation_name", stringToUnencodedStringOf()))
+        .withDisplayName(localProperty("emlocation_name"))
       )
       .withCollection("emrelations", CollectionBuilder::isRelationCollection)
     )
