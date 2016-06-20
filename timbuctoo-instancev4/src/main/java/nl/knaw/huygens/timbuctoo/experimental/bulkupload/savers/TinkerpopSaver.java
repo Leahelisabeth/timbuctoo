@@ -174,11 +174,11 @@ public class TinkerpopSaver implements AutoCloseable, Saver {
       return data.get(collection.getCollectionName()).get(identity);
     }
 
-    public void put(Collection collection, String uniqeValue, Vertex vertex) {
+    public void put(Collection collection, String uniqueValue, Vertex vertex) {
       if (!data.containsKey(collection.getCollectionName())) {
         data.put(collection.getCollectionName(), new HashMap<>());
       }
-      data.get(collection.getCollectionName()).put(uniqeValue, vertex);
+      data.get(collection.getCollectionName()).put(uniqueValue, vertex);
     }
   }
 }

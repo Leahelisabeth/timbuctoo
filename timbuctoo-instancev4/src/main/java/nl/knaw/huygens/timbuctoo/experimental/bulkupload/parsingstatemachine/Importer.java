@@ -136,11 +136,11 @@ public class Importer {
   }
 
   public Result setValue(int id, String value) {
-    if (currentState != ImportState.GETTING_VALUES) {
-      return Result.failure("I was not expecting a value property here");
-    }
     if (idsToSkip.contains(id) || currentState == ImportState.SKIPPING) {
       return Result.ignored();
+    }
+    if (currentState != ImportState.GETTING_VALUES) {
+      return Result.failure("I was not expecting a value property here");
     }
     Optional<ImportPropertyDescription> propOpt = properties.get(id);
     if (propOpt.isPresent()) {
@@ -156,6 +156,9 @@ public class Importer {
   }
 
   public HashMap<Integer, Result> finishEntity() {
+    if (currentState == ImportState.SKIPPING) {
+      return new HashMap<>();
+    }
     HashMap<String, Object> propertyValues = new HashMap<>();
     HashMap<ImportPropertyDescription, String> relations = new HashMap<>();
     HashMap<Integer, Result> results = new HashMap<>();
@@ -163,11 +166,13 @@ public class Importer {
       String value = currentProperties[i];
       if (value != null) {
         ImportPropertyDescription desc = properties.getByOrder(i);
-        if ("basic".equals(desc.getType())) {
-          propertyValues.put(desc.getPropertyName(), value); //FIXME transform value and put error in results
-          results.put(desc.getId(), Result.success());
-        } else {
-          relations.put(desc, value);
+        if (!idsToSkip.contains(desc.getId())) {
+          if ("basic".equals(desc.getType())) {
+            propertyValues.put(desc.getPropertyName(), value); //FIXME transform value and put error in results
+            results.put(desc.getId(), Result.success());
+          } else {
+            relations.put(desc, value);
+          }
         }
       }
     }
