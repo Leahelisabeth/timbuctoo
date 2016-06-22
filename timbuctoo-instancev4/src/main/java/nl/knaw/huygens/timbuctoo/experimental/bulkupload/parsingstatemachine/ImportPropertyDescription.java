@@ -6,11 +6,21 @@ public class ImportPropertyDescription {
   private String[] metadata = new String[0];
   private final Integer id;
   private final int order;
-  private String type = "basic";
+  private PropertyTypes propertyType = PropertyTypes.BASIC;
 
   ImportPropertyDescription(Integer id, int order) {
     this.id = id;
     this.order = order;
+  }
+
+  public PropertyTypes getType() {
+    return propertyType;
+  }
+
+  public enum PropertyTypes {
+    NUMERIC,
+    RELATION,
+    BASIC
   }
 
   public void setPropertyName(String propertyName) {
@@ -45,11 +55,19 @@ public class ImportPropertyDescription {
     return order;
   }
 
-  public String getType() {
-    return type;
-  }
-
-  public void setType(String type) {
-    this.type = type;
+  public boolean setPropertyType(String propertyType) {
+    switch (propertyType) {
+      case "numeric":
+        this.propertyType = PropertyTypes.NUMERIC;
+        return true;
+      case "relation":
+        this.propertyType = PropertyTypes.RELATION;
+        return true;
+      case "basic":
+        this.propertyType = PropertyTypes.BASIC;
+        return true;
+      default:
+        return false;
+    }
   }
 }

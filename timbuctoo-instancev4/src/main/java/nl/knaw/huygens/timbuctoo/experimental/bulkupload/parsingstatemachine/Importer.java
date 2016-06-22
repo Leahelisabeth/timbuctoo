@@ -66,7 +66,7 @@ public class Importer {
         idsToSkip.add(id);
         return Result.failure("Relation does not exist: " + propertyDescription.getPropertyName());
       } else {
-        propertyDescription.setType(type);
+        propertyDescription.setPropertyType("relation");
         return Result.success();
       }
     } else if (type == null || "".equals(type)) {
@@ -75,10 +75,15 @@ public class Importer {
         return Result.failure("Collection " + currentCollection.getCollectionName() + " has no property configured " +
                                 "with name " + propertyDescription.getPropertyName());
       } else {
+        propertyDescription.setPropertyType("basic");
         return Result.success();
       }
     } else {
-      return Result.failure("Unknown type");
+      if (!properties.getOrCreate(id).setPropertyType(type)) {
+        return Result.failure("Unknown type");
+      } else {
+        return Result.success();
+      }
     }
   }
 
@@ -167,10 +172,17 @@ public class Importer {
       if (value != null) {
         ImportPropertyDescription desc = properties.getByOrder(i);
         if (!idsToSkip.contains(desc.getId())) {
-          if ("basic".equals(desc.getType())) {
-            propertyValues.put(desc.getPropertyName(), value); //FIXME transform value and put error in results
+          if (desc.getType() == ImportPropertyDescription.PropertyTypes.BASIC) {
+            propertyValues.put(desc.getPropertyName(), value);
             results.put(desc.getId(), Result.success());
-          } else {
+          } else if (desc.getType() == ImportPropertyDescription.PropertyTypes.NUMERIC) {
+            try {
+              propertyValues.put(desc.getPropertyName(), Integer.parseInt(value));
+              results.put(desc.getId(), Result.success());
+            } catch (NumberFormatException e) {
+              results.put(desc.getId(), Result.failure(value + " is not a valid number (fractions are not supported)"));
+            }
+          } else if (desc.getType() == ImportPropertyDescription.PropertyTypes.RELATION) {
             relations.put(desc, value);
           }
         }
