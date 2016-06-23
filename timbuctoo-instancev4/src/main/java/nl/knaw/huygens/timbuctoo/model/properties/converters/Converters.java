@@ -13,6 +13,7 @@ public class Converters {
     "NOT_APPLICABLE"
   );
   public static final PersonNamesConverter personNames = new PersonNamesConverter();
+  public static final NumberToIntConverter numberToInt = new NumberToIntConverter();
   public static final StringToUnencodedStringOfLimitedValuesConverter stringOfYesNoUnknown = stringToUnencodedStringOf(
     "YES",
     "NO",
