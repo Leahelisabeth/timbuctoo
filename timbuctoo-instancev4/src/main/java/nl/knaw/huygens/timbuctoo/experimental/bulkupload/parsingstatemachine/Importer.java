@@ -1,5 +1,6 @@
 package nl.knaw.huygens.timbuctoo.experimental.bulkupload.parsingstatemachine;
 
+import com.google.common.base.Strings;
 import nl.knaw.huygens.timbuctoo.experimental.bulkupload.savers.Saver;
 import nl.knaw.huygens.timbuctoo.experimental.bulkupload.savers.VertexCreatedTwiceException;
 import nl.knaw.huygens.timbuctoo.model.vre.Collection;
@@ -36,7 +37,7 @@ public class Importer {
     if (collectionOpt.isPresent()) {
       currentCollection = collectionOpt.get();
       currentState = ImportState.GETTING_DECLARATION;
-      properties = new ImportPropertyDescriptions(currentCollection);
+      properties = new ImportPropertyDescriptions(currentCollection, saver::relationExists);
       identifierColumn = Optional.empty();
       return Result.success();
     } else {
@@ -59,30 +60,31 @@ public class Importer {
 
     final ImportPropertyDescription propertyDescription = properties.getOrCreate(id);
 
-    if (propertyDescription.getPropertyName() == null) {
+    if (!propertyDescription.hasPropertyName()) {
       return Result.failure("You should specify the name before specifying the type");
     } else if ("relation".equals(type)) {
-      if (!saver.relationExists(propertyDescription.getPropertyName())) {
+      if (!propertyDescription.isValidRelationName()) {
         idsToSkip.add(id);
         return Result.failure("Relation does not exist: " + propertyDescription.getPropertyName());
       } else {
         propertyDescription.setPropertyType("relation");
         return Result.success();
       }
-    } else if (type == null || "".equals(type)) {
-      if (!currentCollection.getWriteableProperties().containsKey(propertyDescription.getPropertyName())) {
+    } else {
+      if (!propertyDescription.isValidPropertyName()) {
         idsToSkip.add(id);
         return Result.failure("Collection " + currentCollection.getCollectionName() + " has no property configured " +
                                 "with name " + propertyDescription.getPropertyName());
       } else {
-        propertyDescription.setPropertyType("basic");
-        return Result.success();
-      }
-    } else {
-      if (!properties.getOrCreate(id).setPropertyType(type)) {
-        return Result.failure("Unknown type");
-      } else {
-        return Result.success();
+        if (Strings.isNullOrEmpty(type)) {
+          type = "basic";
+        }
+        if (!propertyDescription.setPropertyType(type)) {
+          idsToSkip.add(id);
+          return Result.failure("Unknown type");
+        } else {
+          return Result.success();
+        }
       }
     }
   }
@@ -94,8 +96,13 @@ public class Importer {
     if (currentState != ImportState.GETTING_DECLARATION) {
       return Result.failure("I was not expecting a property declaration here");
     }
-    properties.getOrCreate(id).setPropertyName(name);
-    return Result.success();
+    if (properties.getOrCreate(id).setPropertyName(name)) {
+      return Result.success();
+    } else {
+      idsToSkip.add(id);
+      return Result.failure("Collection " + currentCollection.getCollectionName() + " has no property or relation " +
+                              "configured with name " + name);
+    }
   }
 
   public Result registerUnique(int id, boolean isUnique) {
@@ -173,11 +180,11 @@ public class Importer {
         ImportPropertyDescription desc = properties.getByOrder(i);
         if (!idsToSkip.contains(desc.getId())) {
           if (desc.getType() == ImportPropertyDescription.PropertyTypes.BASIC) {
-            propertyValues.put(desc.getPropertyName(), value);
+            propertyValues.put(desc.getDbPropertyName(), value);
             results.put(desc.getId(), Result.success());
           } else if (desc.getType() == ImportPropertyDescription.PropertyTypes.NUMERIC) {
             try {
-              propertyValues.put(desc.getPropertyName(), Integer.parseInt(value));
+              propertyValues.put(desc.getDbPropertyName(), Integer.parseInt(value));
               results.put(desc.getId(), Result.success());
             } catch (NumberFormatException e) {
               results.put(desc.getId(), Result.failure(value + " is not a valid number (fractions are not supported)"));

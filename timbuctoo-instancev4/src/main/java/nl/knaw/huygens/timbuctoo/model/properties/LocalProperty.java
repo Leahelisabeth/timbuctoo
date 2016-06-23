@@ -14,8 +14,6 @@ import java.util.Collection;
 import java.util.Optional;
 import java.util.function.Supplier;
 
-import static nl.knaw.huygens.timbuctoo.util.JsonBuilder.jsnO;
-
 public class LocalProperty extends ReadableProperty {
   private final String propName;
   private final Converter converter;
@@ -59,5 +57,9 @@ public class LocalProperty extends ReadableProperty {
       () -> __.<Object, String>values(propName).map(prop -> Try.of(() ->
         converter.tinkerPopToExcel(prop.get(), getGuiTypeId())));
     return supplier.get();
+  }
+
+  public String getPropName() {
+    return propName;
   }
 }
