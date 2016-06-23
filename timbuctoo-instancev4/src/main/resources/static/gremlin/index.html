@@ -25,26 +25,41 @@
   jQuery(function($, undefined) {
     $('#term_demo').terminal(function(command, term) {
       term.pause();
-      $.ajax({
-        type: "POST",
-        url: "/v2.1/gremlin",
-        data: command,
-        success: function (result) {
-          term.echo(result);
-          term.resume();
-        },
-        error: function (xhr, status, error) {
-          term.echo("Query not executed successfully: " + status);
-          if (error) {
-            term.echo(error);
+      var parts = command.split("|");
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', "/v2.1/gremlin");
+      xhr.setRequestHeader("Content-type", "text/plain");
+      if (parts.slice(-1)[0].trim().toLowerCase() == "excel") {
+        command = parts.slice(0, -1).join("|");
+        xhr.setRequestHeader("Accept", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+        xhr.responseType = "blob";
+        xhr.onload = function(e) {
+          if (this.status == 200) {
+            term.echo("File generated successfully");
+            term.resume();
+            var url = window.URL.createObjectURL(this.response);
+            window.location = url;
+          } else {
+            var reader = new FileReader();
+            reader.addEventListener("loadend", function() {
+              term.echo(reader.result);
+              term.resume();
+            });
+            reader.readAsText(this.response);
           }
+        };
+      } else {
+        xhr.responseType = 'text';
+        xhr.setRequestHeader("Accept", "text/plain");
+        xhr.responseType = "text";
+        xhr.onload = function(e) {
+          term.echo(this.response);
           term.resume();
-        },
-        dataType: "text",
-        contentType: "text/plain",
-      });
+        };
+      }
+      xhr.send(command);
     }, {
-      greetings: 'Type a gremlin query such as: g.V().has("isLatest", true).has(T.label, LabelP.of("dcararchive"))',
+      greetings: 'Type a gremlin query such as: g.V().has("isLatest", true).has(T.label, LabelP.of("dcararchive")).limit(10)\nTo generate excel you pipe to excel: g.V().limit(10) | excel',
     });
   });
   </script>

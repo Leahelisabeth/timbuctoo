@@ -7,6 +7,7 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
+import nl.knaw.huygens.timbuctoo.experimental.exports.excel.ExcelExportService;
 import nl.knaw.huygens.timbuctoo.model.Datable;
 import nl.knaw.huygens.timbuctoo.model.LocationNames;
 import nl.knaw.huygens.timbuctoo.model.PersonNames;
@@ -16,6 +17,7 @@ import nl.knaw.huygens.timbuctoo.search.description.property.PropertyDescriptorF
 import nl.knaw.huygens.timbuctoo.search.description.propertyparser.PropertyParserFactory;
 import nl.knaw.huygens.timbuctoo.server.GraphWrapper;
 import nl.knaw.huygens.timbuctoo.server.mediatypes.v2.gremlin.RootQuery;
+import org.apache.poi.xssf.streaming.SXSSFWorkbook;
 import org.apache.tinkerpop.gremlin.groovy.DefaultImportCustomizerProvider;
 import org.apache.tinkerpop.gremlin.groovy.jsr223.GremlinGroovyScriptEngine;
 import org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.GraphTraversal;
@@ -35,8 +37,12 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.StreamingOutput;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -57,13 +63,15 @@ public class Gremlin {
 
   private final GremlinGroovyScriptEngine engine;
   private final GraphWrapper wrapper;
+  private final ExcelExportService excelExportService;
   private final Bindings bindings;
   private PropertyDescriptorFactory propertyDescriptorFactory;
   private PropertyParserFactory propertyParserFactory;
   private final ObjectMapper mapper;
 
-  public Gremlin(GraphWrapper wrapper) {
+  public Gremlin(GraphWrapper wrapper, ExcelExportService excelExportService) {
     this.wrapper = wrapper;
+    this.excelExportService = excelExportService;
     this.engine = new GremlinGroovyScriptEngine();
 
     final DefaultImportCustomizerProvider provider = new DefaultImportCustomizerProvider();
@@ -94,7 +102,14 @@ public class Gremlin {
   @Consumes("text/plain")
   @Produces("text/plain")
   public Response post(String query, @QueryParam("timelimit") @DefaultValue("500") int timelimit) {
-    return handlePlainQuery(query, timelimit);
+    return handlePlainQuery(query, timelimit, "");
+  }
+
+  @POST
+  @Consumes("text/plain")
+  @Produces("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+  public Response postExcel(String query, @QueryParam("timelimit") @DefaultValue("500") int timelimit) {
+    return handlePlainQuery(query, timelimit, "excel");
   }
 
   @POST
@@ -117,20 +132,28 @@ public class Gremlin {
     return Response.temporaryRedirect(URI.create("/static/gremlin")).build();
   }
 
-  private Response handlePlainQuery(String query, int timeLimit) {
-    if (Strings.isNullOrEmpty(query)) {
-      return Response.ok("").build();
-    } else {
+  private Response handlePlainQuery(String query, int timeLimit, String type) {
+    try {
       bindings.put("g", wrapper.getGraph().traversal());
-      bindings.put("maria", wrapper.getGraph().traversal().V().has("tim_id", "37981a95-e527-40a8-9528-7d32c5c5f360"));
-      try {
-        final String result = evaluateQuery(query + ".timeLimit(" + timeLimit + ")");
+      if (Strings.isNullOrEmpty(query)) {
+        query = "g.V().limit(0)";
+      } else {
+        query += ".timeLimit(" + timeLimit + ")";
+      }
+      if ("excel".equals(type)) {
+        final StreamingOutput streamingOutput = evaluateQueryAsExcel(query);
+        return Response.ok(streamingOutput)
+          .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"result.xlsx\"")
+          .build();
+      } else {
+        final String result = evaluateQuery(query);
         wrapper.getGraph().tx().commit();
         return Response.ok(result).build();
-      } catch (ScriptException e) {
-        LOG.error(e.getMessage(), e);
-        return Response.status(500).entity(e.getMessage()).build();
       }
+    } catch (Exception e) {
+      StringWriter sw = new StringWriter();
+      e.printStackTrace(new PrintWriter(sw));
+      return Response.status(400).entity(sw.toString()).build();
     }
   }
 
@@ -356,7 +379,6 @@ public class Gremlin {
     GraphTraversal traversalResult = (GraphTraversal) engine.eval(query, bindings);
     StringBuilder result = new StringBuilder();
     while (traversalResult.hasNext()) {
-
       dumpItem(traversalResult.next(), result);
     }
     if (result.length() > 0) {
@@ -364,6 +386,12 @@ public class Gremlin {
     } else {
       return "No results...";
     }
+  }
+
+  private StreamingOutput evaluateQueryAsExcel(String query) throws ScriptException {
+    GraphTraversal<?,Vertex> traversalResult = (GraphTraversal<?,Vertex>) engine.eval(query, bindings);
+    SXSSFWorkbook workbook = excelExportService.verticesToExcel(traversalResult);
+    return workbook::write;
   }
 
 }

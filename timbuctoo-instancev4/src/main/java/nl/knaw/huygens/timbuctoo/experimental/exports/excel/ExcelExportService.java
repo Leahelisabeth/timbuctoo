@@ -35,7 +35,6 @@ public class ExcelExportService {
     this.graphWrapper = graphWrapper;
   }
 
-
   /**
    * Exports a list of vertices as excel workbook
    * @param vertices list of vertices from the search result
@@ -85,6 +84,24 @@ public class ExcelExportService {
     return workbook;
   }
 
+  public SXSSFWorkbook verticesToExcel(GraphTraversal<?, Vertex> vertices) {
+
+    SXSSFWorkbook workbook = new SXSSFWorkbook();
+
+    Map<String, Set<Vertex>> verticesPerType = Maps.newHashMap();
+
+    mapVertices("EuropeseMigratie", vertices, verticesPerType);
+
+    verticesPerType.forEach((key, value) -> {
+      mappings.getCollectionForType(key).ifPresent(collection -> {
+        new EntitySheet(collection, workbook, graphWrapper, mappings, new String[0], "emrelation_accepted")
+          .renderToWorkbook(value);
+      });
+    });
+
+    return workbook;
+  }
+
   private String getRelationAcceptedPropName(Vre vre) {
     Collection relationCollection = vre.getRelationCollection().orElse(null);
     // FIXME: string concatenating methods like this should be delegated to a configuration class
@@ -112,7 +129,7 @@ public class ExcelExportService {
     return workbook;
   }
 
-  private void mapVertices(String vreId, GraphTraversal<Vertex, Vertex> vertexT, Map<String, Set<Vertex>> vertexMap) {
+  private void mapVertices(String vreId, GraphTraversal<?, Vertex> vertexT, Map<String, Set<Vertex>> vertexMap) {
     // load all the vertices in verticesPerType map
     vertexT.asAdmin().clone().forEachRemaining(entity -> {
 
