@@ -14,15 +14,70 @@
   <div class="row">
     <h1>Excel upload</h1>
     Upload a changed version<br>
-    <form class="form-horizontal" method="POST" action="/v2.1/bulk-upload" enctype="multipart/form-data" target="results">
+    <form class="form-horizontal col-sm-6" method="POST" action="/v2.1/bulk-upload" enctype="multipart/form-data" target="results">
       <div class="form-group">
-        <label class="col-sm-2">Vre</label><input name="vre" type="text">
+        <label class="col-sm-4 control-label">Vre</label>
+        <div class="col-sm-8">
+          <input name="vre" type="text" class="form-control" placeholder="e.g. EuropeseMigratie">
+        </div>
       </div>
       <div class="form-group">
-        <label class="col-sm-2">Excel file</label><input type="file" name="file">
+        <label class="col-sm-4 control-label">Excel file</label>
+        <div class="col-sm-8">
+          <input type="file" name="file" class="form-control">
+        </div>
       </div>
       <div class="form-group">
-        <input type="submit" value="upload" name="submit" class="col-sm-offset-2 btn btn-primary">
+        <input type="submit" value="upload" name="submit" class="col-sm-offset-10 btn btn-primary">
+      </div>
+    </form>
+    <form class="form-horizontal  col-sm-6" method="POST" action="/v2.1/system/relationtypes" target="results">
+      <div class="form-group">
+        <label class="col-sm-4 control-label">Naam</label>
+        <div class="col-sm-8">
+          <input name="name" type="text" class="form-control" placeholder="e.g. hasWritten">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-4 control-label">Naam (omgekeerd)</label>
+        <div class="col-sm-8">
+          <input name="inversename" type="text" class="form-control" placeholder="e.g. isWrittenBy">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-4 control-label">broncollectie</label>
+        <div class="col-sm-8">
+          <select name="source" class="form-control">
+            <option value="person">person</option>
+            <option value="document">document</option>
+            <option value="collective">collective</option>
+            <option value="keyword">keyword</option>
+            <option value="language">language</option>
+            <option value="location">location</option>
+            <option value="archive">archive</option>
+            <option value="archiver">archiver</option>
+            <option value="legislation">legislation</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-4 control-label">doelcollectie</label>
+        <div class="col-sm-8">
+          <select name="target" class="form-control">
+            <option value="person">person</option>
+            <option value="document">document</option>
+            <option value="collective">collective</option>
+            <option value="keyword">keyword</option>
+            <option value="language">language</option>
+            <option value="location">location</option>
+            <option value="archive">archive</option>
+            <option value="archiver">archiver</option>
+            <option value="legislation">legislation</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <input type="submit" value="create" name="submit" class="col-sm-offset-10 btn btn-primary">
       </div>
     </form>
   </div>
