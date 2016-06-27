@@ -71,6 +71,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.management.ObjectName;
+import java.io.InputStream;
 import java.net.URI;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -115,11 +116,14 @@ public class TimbuctooV4 extends Application<TimbuctooConfiguration> {
   public void run(TimbuctooConfiguration configuration, Environment environment) throws Exception {
     //Make sure we know what version is running
     Properties properties = new Properties();
-    properties.load(getClass().getClassLoader().getResourceAsStream("git.properties"));
-    String currentVersion = properties.getProperty("git.commit.id");
+    final InputStream resourceAsStream = getClass().getClassLoader().getResourceAsStream("git.properties");
+    String currentVersion = "no version available";
+    if (resourceAsStream != null) {
+      properties.load(resourceAsStream);
+      currentVersion = properties.getProperty("git.commit.id");
 
-    LoggerFactory.getLogger(this.getClass()).info("Now launching timbuctoo version: " + currentVersion);
-
+      LoggerFactory.getLogger(this.getClass()).info("Now launching timbuctoo version: " + currentVersion);
+    }
     // Support services
     final AuthenticationHandler authHandler = configuration.getFederatedAuthentication().makeHandler(environment);
     final Path loginsPath = Paths.get(configuration.getLoginsFilePath());
