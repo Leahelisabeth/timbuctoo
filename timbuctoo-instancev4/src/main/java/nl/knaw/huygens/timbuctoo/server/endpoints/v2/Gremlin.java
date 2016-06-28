@@ -137,8 +137,6 @@ public class Gremlin {
       bindings.put("g", wrapper.getGraph().traversal());
       if (Strings.isNullOrEmpty(query)) {
         query = "g.V().limit(0)";
-      } else {
-        query += ".timeLimit(" + timeLimit + ")";
       }
       if ("excel".equals(type)) {
         final StreamingOutput streamingOutput = evaluateQueryAsExcel(query);
