@@ -8,6 +8,7 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import nl.knaw.huygens.timbuctoo.experimental.exports.excel.ExcelExportService;
+import nl.knaw.huygens.timbuctoo.experimental.exports.graphviz.GraphvizExportService;
 import nl.knaw.huygens.timbuctoo.model.Datable;
 import nl.knaw.huygens.timbuctoo.model.LocationNames;
 import nl.knaw.huygens.timbuctoo.model.PersonNames;
@@ -64,14 +65,17 @@ public class Gremlin {
   private final GremlinGroovyScriptEngine engine;
   private final GraphWrapper wrapper;
   private final ExcelExportService excelExportService;
+  private final GraphvizExportService graphvizExportService;
   private final Bindings bindings;
   private PropertyDescriptorFactory propertyDescriptorFactory;
   private PropertyParserFactory propertyParserFactory;
   private final ObjectMapper mapper;
 
-  public Gremlin(GraphWrapper wrapper, ExcelExportService excelExportService) {
+  public Gremlin(GraphWrapper wrapper, ExcelExportService excelExportService,
+                 GraphvizExportService graphvizExportService) {
     this.wrapper = wrapper;
     this.excelExportService = excelExportService;
+    this.graphvizExportService = graphvizExportService;
     this.engine = new GremlinGroovyScriptEngine();
 
     final DefaultImportCustomizerProvider provider = new DefaultImportCustomizerProvider();
@@ -114,6 +118,14 @@ public class Gremlin {
 
   @POST
   @Consumes("text/plain")
+  @Produces("text/vnd.graphviz")
+  public Response postGraphviz(String query, @QueryParam("timelimit") @DefaultValue("500") int timelimit) {
+    return handlePlainQuery(query, timelimit, "graphviz");
+  }
+
+
+  @POST
+  @Consumes("text/plain")
   @Produces("application/json")
   public Response postJson(String query) {
     bindings.put("g", wrapper.getGraph().traversal());
@@ -143,6 +155,8 @@ public class Gremlin {
         return Response.ok(streamingOutput)
           .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"result.xlsx\"")
           .build();
+      } else if ("graphviz".equals(type)) {
+        return Response.ok(evaluateQueryAsGraphviz(query)).build();
       } else {
         final String result = evaluateQuery(query);
         wrapper.getGraph().tx().commit();
@@ -390,6 +404,12 @@ public class Gremlin {
     GraphTraversal<?,Vertex> traversalResult = (GraphTraversal<?,Vertex>) engine.eval(query, bindings);
     SXSSFWorkbook workbook = excelExportService.verticesToExcel(traversalResult);
     return workbook::write;
+  }
+
+  private String evaluateQueryAsGraphviz(String query) throws ScriptException {
+    GraphTraversal<?,Vertex> traversalResult = (GraphTraversal<?,Vertex>) engine.eval(query, bindings);
+    String data = graphvizExportService.generateGraphviz(traversalResult);
+    return data;
   }
 
 }

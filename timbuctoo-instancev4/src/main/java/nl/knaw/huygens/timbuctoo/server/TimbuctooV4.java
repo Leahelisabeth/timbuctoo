@@ -24,6 +24,7 @@ import nl.knaw.huygens.timbuctoo.crud.changelistener.DenormalizedSortFieldUpdate
 import nl.knaw.huygens.timbuctoo.crud.changelistener.FulltextIndexChangeListener;
 import nl.knaw.huygens.timbuctoo.experimental.bulkupload.BulkUploadService;
 import nl.knaw.huygens.timbuctoo.experimental.exports.excel.ExcelExportService;
+import nl.knaw.huygens.timbuctoo.experimental.exports.graphviz.GraphvizExportService;
 import nl.knaw.huygens.timbuctoo.experimental.server.endpoints.v2.BulkUpload;
 import nl.knaw.huygens.timbuctoo.logging.LoggingFilter;
 import nl.knaw.huygens.timbuctoo.logging.Logmarkers;
@@ -203,7 +204,7 @@ public class TimbuctooV4 extends Application<TimbuctooConfiguration> {
     register(environment, new Autocomplete(autocompleteService));
     register(environment, new Index(crudService, loggedInUserStore));
     register(environment, new SingleEntity(crudService, loggedInUserStore));
-    register(environment, new Gremlin(graphManager, excelExportService));
+    register(environment, new Gremlin(graphManager, excelExportService, new GraphvizExportService(graphManager, vres)));
     register(environment, new Graph(graphManager));
     register(environment, new BulkUpload(new BulkUploadService(vres, graphManager)));
     register(environment, new RelationTypes(graphManager));

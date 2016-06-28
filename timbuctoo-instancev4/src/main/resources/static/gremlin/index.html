@@ -1,6 +1,7 @@
 <head>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.terminal/0.10.4/js/jquery.terminal.min.js"></script>
+  <script src="./viz.js"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery.terminal/0.10.4/css/jquery.terminal.min.css" rel="stylesheet"/>
   <style>
     #term_demo {
@@ -46,6 +47,19 @@
               term.resume();
             });
             reader.readAsText(this.response);
+          }
+        };
+      } else if (parts.slice(-1)[0].trim().toLowerCase() == "graphviz") {
+        command = parts.slice(0, -1).join("|");
+        xhr.setRequestHeader("Accept", "text/vnd.graphviz");
+        xhr.responseType = "text";
+        xhr.onload = function(e) {
+          term.echo(this.response);
+          try {
+            var rendered = Viz(this.response, { format:"svg", engine: "dot" });
+            term.echo(rendered, {raw: true});
+          } finally {
+            term.resume();
           }
         };
       } else {
