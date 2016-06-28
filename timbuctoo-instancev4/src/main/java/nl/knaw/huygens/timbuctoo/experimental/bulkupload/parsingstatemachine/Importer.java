@@ -14,7 +14,7 @@ import java.util.Optional;
 import java.util.Set;
 
 public class Importer {
-  private Set<Integer> idsToSkip = new HashSet<>();
+  private Set<Integer> idsToSkip;
   private ImportPropertyDescriptions properties;
   private final Saver saver;
   private Collection currentCollection;
@@ -39,6 +39,7 @@ public class Importer {
       currentState = ImportState.GETTING_DECLARATION;
       properties = new ImportPropertyDescriptions(currentCollection, saver::relationExists);
       identifierColumn = Optional.empty();
+      idsToSkip = new HashSet<>();
       return Result.success();
     } else {
       currentState = ImportState.SKIPPING;
@@ -201,12 +202,19 @@ public class Importer {
       for (Map.Entry<ImportPropertyDescription, String> entry : relations.entrySet()) {
         final ImportPropertyDescription prop = entry.getKey();
         final String value = entry.getValue();
-        final Optional<String> result = saver.makeRelation(vertex, prop.getPropertyName(), currentCollection,
-                                                           prop.getMetadata()[0], value);
-        if (result.isPresent()) {
-          results.put(prop.getId(), Result.failure(result.get()));
-        } else {
-          results.put(prop.getId(), Result.success());
+        try {
+          final Optional<String> result = saver.makeRelation(vertex, prop.getPropertyName(), currentCollection,
+                                                             prop.getMetadata()[0], value);
+          if (result.isPresent()) {
+            results.put(prop.getId(), Result.failure(result.get()));
+          } else {
+            results.put(prop.getId(), Result.success());
+          }
+        } catch (ArrayIndexOutOfBoundsException e) {
+          results.put(prop.getId(), Result.failure("Relation " + prop.getPropertyName() + " of " +
+                                                     currentCollection.getCollectionName() + " has no target " +
+                                                     "collection set"));
+          idsToSkip.add(prop.getId());
         }
       }
     } catch (VertexCreatedTwiceException e) {
