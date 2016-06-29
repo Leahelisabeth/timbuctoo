@@ -105,13 +105,11 @@ public class TinkerpopSaver implements AutoCloseable, Saver {
     final RelationDescription description = descriptions.get(relationName);
 
     if (description == null) {
-      //FIXME allow importing of relations
       return Optional.of("Relation " + relationName + " does not exist");
     } else {
       final Optional<Collection> otherCollectionOpt = vre.getCollectionForCollectionName(otherCollectionName);
       if (!otherCollectionOpt.isPresent()) {
-        //FIXME create VRE while importing
-        return Optional.of("Relation " + relationName + " does not exist");
+        return Optional.of("Collection " + otherCollectionName + " does not exist");
       } else {
         Collection otherCollection = otherCollectionOpt.get();
         if (description.isValid(ownCollection, otherCollection)) {
