@@ -38,6 +38,7 @@ import nl.knaw.huygens.timbuctoo.security.LoggedInUserStore;
 import nl.knaw.huygens.timbuctoo.server.databasemigration.AutocompleteLuceneIndexDatabaseMigration;
 import nl.knaw.huygens.timbuctoo.server.databasemigration.DatabaseMigration;
 import nl.knaw.huygens.timbuctoo.server.databasemigration.HuygensIngConfigToDatabaseMigration;
+import nl.knaw.huygens.timbuctoo.server.databasemigration.HistoryToLogMigration;
 import nl.knaw.huygens.timbuctoo.server.databasemigration.InvariantsFix;
 import nl.knaw.huygens.timbuctoo.server.databasemigration.LabelDatabaseMigration;
 import nl.knaw.huygens.timbuctoo.server.databasemigration.LocationNamesToLocationNameDatabaseMigration;
@@ -67,7 +68,7 @@ import nl.knaw.huygens.timbuctoo.server.healthchecks.databasechecks.SortIndexesD
 import nl.knaw.huygens.timbuctoo.server.mediatypes.v2.search.FacetValueDeserializer;
 import nl.knaw.huygens.timbuctoo.server.security.LocalUserCreator;
 import nl.knaw.huygens.timbuctoo.server.tasks.DatabaseValidationTask;
-import nl.knaw.huygens.timbuctoo.server.tasks.DbLogCreatorTask;
+import nl.knaw.huygens.timbuctoo.server.tasks.DbLogValidatorTask;
 import nl.knaw.huygens.timbuctoo.server.tasks.UserCreationTask;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -156,6 +157,7 @@ public class TimbuctooV4 extends Application<TimbuctooConfiguration> {
     migrations.put(LocationNamesToLocationNameDatabaseMigration.class.getName(),
       new LocationNamesToLocationNameDatabaseMigration());
 
+    migrations.put(HistoryToLogMigration.class.getSimpleName(), new HistoryToLogMigration());
     // Persist HuygensIng mappings in database
     migrations.put("config-to-database-migration",
       new HuygensIngConfigToDatabaseMigration(vres, HuygensIng.keywordTypes));
@@ -224,7 +226,7 @@ public class TimbuctooV4 extends Application<TimbuctooConfiguration> {
       getDatabaseValidator(vres, graphManager),
       graphManager
     ));
-    environment.admin().addTask(new DbLogCreatorTask(graphManager));
+    environment.admin().addTask(new DbLogValidatorTask(graphManager));
 
     // register health checks
     register(environment, "Encryption algorithm", new EncryptionAlgorithmHealthCheck(ENCRYPTION_ALGORITHM));

@@ -12,16 +12,14 @@ import org.slf4j.LoggerFactory;
 
 import java.io.PrintWriter;
 
-public class DbLogCreatorTask extends Task {
-  public static final Logger LOG = LoggerFactory.getLogger(DbLogCreatorTask.class);
-  private final TinkerpopGraphManager graphManager;
+public class DbLogValidatorTask extends Task {
+  public static final Logger LOG = LoggerFactory.getLogger(DbLogValidatorTask.class);
   private final DatabaseLog logGenerator;
   private final DatabaseFixer databaseFixer;
   private final GraphLogValidator graphLogValidator;
 
-  public DbLogCreatorTask(TinkerpopGraphManager graphManager) {
-    super("createlog");
-    this.graphManager = graphManager;
+  public DbLogValidatorTask(TinkerpopGraphManager graphManager) {
+    super("validatelog");
     logGenerator = new DatabaseLog(graphManager);
     databaseFixer = new DatabaseFixer(graphManager);
     graphLogValidator = new GraphLogValidator(graphManager);
@@ -29,15 +27,6 @@ public class DbLogCreatorTask extends Task {
 
   @Override
   public void execute(ImmutableMultimap<String, String> parameters, PrintWriter output) throws Exception {
-    // Add the missing Vertices and Edges, before creating a log.
-    Stopwatch fixStopwatch = Stopwatch.createStarted();
-    databaseFixer.fix();
-    LOG.info("Fixing the database took {}", fixStopwatch.stop());
-
-    Stopwatch generateStopwatch = Stopwatch.createStarted();
-    logGenerator.generate();
-    LOG.info("Log creation took {}", generateStopwatch.stop());
-
     Stopwatch validateStopWatch = Stopwatch.createStarted();
     graphLogValidator.writeReport(output);
     LOG.info("Log validation took {}", validateStopWatch.stop());
