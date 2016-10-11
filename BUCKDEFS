@@ -1,0 +1,2 @@
+# this file is included in all buckfiles because /.buckconfig has buildfile.includes = //BUCKDEFS
+# you can use it to specify rules or macros's that each buildfile should contain
