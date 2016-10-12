@@ -33,7 +33,7 @@ class RelationTripleProcessor {
     Node predicate = triple.getPredicate();
     final RelationType relationType = database.findOrCreateRelationType(predicate);
     final Entity object;
-    if (mappings.containsKey(predicate.getURI())) {
+    if (triple.getObject() != null && mappings.containsKey(predicate.getURI())) {
       Optional<Entity> entity = database.findEntity(mappings.get(predicate.getURI()), triple.getObject());
       if (entity.isPresent()) {
         object = entity.get();
