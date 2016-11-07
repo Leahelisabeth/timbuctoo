@@ -1,8 +1,8 @@
 package nl.knaw.huygens.timbuctoo.rdf;
 
 import com.google.common.collect.Lists;
+import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import org.apache.tinkerpop.gremlin.structure.Element;
-import org.apache.tinkerpop.shaded.jackson.databind.node.JsonNodeFactory;
 
 import java.time.Clock;
 import java.util.List;
