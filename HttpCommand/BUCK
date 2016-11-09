@@ -1,0 +1,19 @@
+java_library(
+  name = 'HttpCommand',
+  srcs = glob(['src/main/java/**/*.java']),
+  deps = [
+    "//third-party/concordion:concordion",
+    "//third-party/xom:xom",
+    "//third-party/guava:guava",
+    "//ContractDiff:ContractDiff",
+    "//third-party/core:jackson-databind",
+    "//third-party/commons:commons-lang3",
+    "//third-party/httpcomponents:httpcore",
+    "//third-party/rs:javax.ws.rs-api",
+  ],
+  exported_deps = [
+  ],
+  visibility = [
+    "PUBLIC"
+  ]
+)
