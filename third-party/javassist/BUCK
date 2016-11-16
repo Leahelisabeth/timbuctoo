@@ -1,0 +1,10 @@
+prebuilt_jar(
+  name = 'javassist',
+  maven_coords = 'org.javassist:javassist:jar:3.18.1-GA',
+  binary_jar = 'javassist-3.18.1-GA.jar',
+  source_jar = 'javassist-3.18.1-GA-sources.jar',
+  visibility = [
+    'PUBLIC'
+  ],
+)
+

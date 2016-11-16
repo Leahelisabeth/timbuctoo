@@ -1,0 +1,10 @@
+prebuilt_jar(
+  name = 'javax.annotation-api',
+  maven_coords = 'javax.annotation:javax.annotation-api:jar:1.2',
+  binary_jar = 'javax.annotation-api-1.2.jar',
+  source_jar = 'javax.annotation-api-1.2-sources.jar',
+  visibility = [
+    'PUBLIC'
+  ],
+)
+

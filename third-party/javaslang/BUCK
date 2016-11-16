@@ -1,0 +1,10 @@
+prebuilt_jar(
+  name = 'javaslang',
+  maven_coords = 'com.javaslang:javaslang:jar:2.0.0-RC4',
+  binary_jar = 'javaslang-2.0.0-RC4.jar',
+  source_jar = 'javaslang-2.0.0-RC4-sources.jar',
+  visibility = [
+    'PUBLIC'
+  ],
+)
+

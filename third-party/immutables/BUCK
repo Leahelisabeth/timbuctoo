@@ -1,0 +1,10 @@
+prebuilt_jar(
+  name = 'value',
+  maven_coords = 'org.immutables:value:jar:2.2.12',
+  binary_jar = 'value-2.2.12.jar',
+  source_jar = 'value-2.2.12-sources.jar',
+  visibility = [
+    'PUBLIC'
+  ],
+)
+

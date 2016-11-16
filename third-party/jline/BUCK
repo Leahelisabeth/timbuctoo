@@ -1,0 +1,10 @@
+prebuilt_jar(
+  name = 'jline',
+  maven_coords = 'jline:jline:jar:2.12',
+  binary_jar = 'jline-2.12.jar',
+  source_jar = 'jline-2.12-sources.jar',
+  visibility = [
+    'PUBLIC'
+  ],
+)
+

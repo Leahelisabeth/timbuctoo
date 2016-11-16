@@ -1,0 +1,16 @@
+prebuilt_jar(
+  name = 'esapi',
+  maven_coords = 'org.owasp.esapi:esapi:jar:2.0.1',
+  binary_jar = 'esapi-2.0.1.jar',
+  source_jar = 'esapi-2.0.1-sources.jar',
+  deps = [
+    '//third-party/commons-collections:commons-collections',
+    '//third-party/commons-configuration:commons-configuration',
+    '//third-party/log4j:log4j',
+    '//third-party/xom:xom'
+  ],
+  visibility = [
+    '//third-party/opensaml:opensaml'
+  ],
+)
+

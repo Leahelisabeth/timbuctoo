@@ -1,0 +1,23 @@
+prebuilt_jar(
+  name = 'scala-library',
+  maven_coords = 'org.scala-lang:scala-library:jar:2.11.7',
+  binary_jar = 'scala-library-2.11.7.jar',
+  source_jar = 'scala-library-2.11.7-sources.jar',
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'scala-reflect',
+  maven_coords = 'org.scala-lang:scala-reflect:jar:2.11.7',
+  binary_jar = 'scala-reflect-2.11.7.jar',
+  source_jar = 'scala-reflect-2.11.7-sources.jar',
+  deps = [
+    ':scala-library'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+

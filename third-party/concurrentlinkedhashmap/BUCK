@@ -1,0 +1,13 @@
+prebuilt_jar(
+  name = 'concurrentlinkedhashmap-lru',
+  maven_coords = 'com.googlecode.concurrentlinkedhashmap:concurrentlinkedhashmap-lru:jar:1.4.2',
+  binary_jar = 'concurrentlinkedhashmap-lru-1.4.2.jar',
+  source_jar = 'concurrentlinkedhashmap-lru-1.4.2-sources.jar',
+  deps = [
+    '//third-party/findbugs:jsr305'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+

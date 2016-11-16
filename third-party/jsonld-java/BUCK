@@ -1,0 +1,19 @@
+prebuilt_jar(
+  name = 'jsonld-java',
+  maven_coords = 'com.github.jsonld-java:jsonld-java:jar:0.7.0',
+  binary_jar = 'jsonld-java-0.7.0.jar',
+  source_jar = 'jsonld-java-0.7.0-sources.jar',
+  deps = [
+    '//third-party/commons-io:commons-io',
+    '//third-party/core:jackson-core',
+    '//third-party/core:jackson-databind',
+    '//third-party/httpcomponents:httpclient-osgi',
+    '//third-party/httpcomponents:httpcore-osgi',
+    '//third-party/slf4j:jcl-over-slf4j',
+    '//third-party/slf4j:slf4j-api'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+

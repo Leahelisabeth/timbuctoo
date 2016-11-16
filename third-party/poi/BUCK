@@ -1,0 +1,42 @@
+prebuilt_jar(
+  name = 'poi',
+  maven_coords = 'org.apache.poi:poi:jar:3.14',
+  binary_jar = 'poi-3.14.jar',
+  source_jar = 'poi-3.14-sources.jar',
+  deps = [
+    '//third-party/commons-codec:commons-codec',
+    '//third-party/commons-logging:commons-logging',
+    '//third-party/log4j:log4j'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'poi-ooxml',
+  maven_coords = 'org.apache.poi:poi-ooxml:jar:3.14',
+  binary_jar = 'poi-ooxml-3.14.jar',
+  source_jar = 'poi-ooxml-3.14-sources.jar',
+  deps = [
+    ':poi',
+    ':poi-ooxml-schemas',
+    '//third-party/virtuald:curvesapi'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'poi-ooxml-schemas',
+  maven_coords = 'org.apache.poi:poi-ooxml-schemas:jar:3.14',
+  binary_jar = 'poi-ooxml-schemas-3.14.jar',
+  deps = [
+    '//third-party/xmlbeans:xmlbeans'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+

@@ -1,0 +1,80 @@
+prebuilt_jar(
+  name = 'activemq-broker',
+  maven_coords = 'org.apache.activemq:activemq-broker:jar:5.13.0',
+  binary_jar = 'activemq-broker-5.13.0.jar',
+  source_jar = 'activemq-broker-5.13.0-sources.jar',
+  deps = [
+    ':activemq-client',
+    ':activemq-openwire-legacy',
+    '//third-party/xalan:xalan'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'activemq-client',
+  maven_coords = 'org.apache.activemq:activemq-client:jar:5.13.0',
+  binary_jar = 'activemq-client-5.13.0.jar',
+  source_jar = 'activemq-client-5.13.0-sources.jar',
+  deps = [
+    '//third-party/commons-net:commons-net',
+    '//third-party/hawtbuf:hawtbuf',
+    '//third-party/slf4j:slf4j-api',
+    '//third-party/specs:geronimo-j2ee-management_1.1_spec',
+    '//third-party/specs:geronimo-jms_1.1_spec'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'activemq-jms-pool',
+  maven_coords = 'org.apache.activemq:activemq-jms-pool:jar:5.13.0',
+  binary_jar = 'activemq-jms-pool-5.13.0.jar',
+  source_jar = 'activemq-jms-pool-5.13.0-sources.jar',
+  deps = [
+    '//third-party/commons:commons-pool2',
+    '//third-party/slf4j:slf4j-api',
+    '//third-party/specs:geronimo-jms_1.1_spec',
+    '//third-party/specs:geronimo-jta_1.0.1B_spec'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'activemq-kahadb-store',
+  maven_coords = 'org.apache.activemq:activemq-kahadb-store:jar:5.13.0',
+  binary_jar = 'activemq-kahadb-store-5.13.0.jar',
+  source_jar = 'activemq-kahadb-store-5.13.0-sources.jar',
+  deps = [
+    ':activemq-broker',
+    '//third-party/commons-net:commons-net',
+    '//third-party/jettison:jettison',
+    '//third-party/protobuf:activemq-protobuf',
+    '//third-party/specs:geronimo-j2ee-management_1.1_spec',
+    '//third-party/specs:geronimo-jta_1.0.1B_spec',
+    '//third-party/xalan:xalan'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'activemq-openwire-legacy',
+  maven_coords = 'org.apache.activemq:activemq-openwire-legacy:jar:5.13.0',
+  binary_jar = 'activemq-openwire-legacy-5.13.0.jar',
+  source_jar = 'activemq-openwire-legacy-5.13.0-sources.jar',
+  deps = [
+    ':activemq-client'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+

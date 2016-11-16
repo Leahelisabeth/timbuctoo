@@ -1,0 +1,10 @@
+prebuilt_jar(
+  name = 'classloader-leak-prevention',
+  maven_coords = 'se.jiderhamn:classloader-leak-prevention:jar:1.8.1',
+  binary_jar = 'classloader-leak-prevention-1.8.1.jar',
+  source_jar = 'classloader-leak-prevention-1.8.1-sources.jar',
+  visibility = [
+    '//third-party/huygens:security-core'
+  ],
+)
+

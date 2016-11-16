@@ -1,0 +1,16 @@
+prebuilt_jar(
+  name = 'jersey-guice',
+  maven_coords = 'com.sun.jersey.contribs:jersey-guice:jar:1.18',
+  binary_jar = 'jersey-guice-1.18.jar',
+  source_jar = 'jersey-guice-1.18-sources.jar',
+  deps = [
+    '//third-party/extensions:guice-servlet',
+    '//third-party/inject:guice',
+    '//third-party/inject:javax.inject',
+    '//third-party/jersey:jersey-servlet'
+  ],
+  visibility = [
+    '//third-party/huygens:security-core'
+  ],
+)
+

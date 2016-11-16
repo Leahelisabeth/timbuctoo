@@ -1,0 +1,28 @@
+prebuilt_jar(
+  name = 'log4j',
+  maven_coords = 'log4j:log4j:jar:1.2.17',
+  binary_jar = 'log4j-1.2.17.jar',
+  source_jar = 'log4j-1.2.17-sources.jar',
+  deps = [
+    '//third-party/specs:geronimo-jms_1.1_spec'
+  ],
+  visibility = [
+    '//third-party/commons-configuration:commons-configuration',
+    '//third-party/commons-logging:commons-logging',
+    '//third-party/esapi:esapi',
+    '//third-party/huygens:security-core',
+    '//third-party/jcabi:jcabi-log',
+    '//third-party/jena:jena-arq',
+    '//third-party/jena:jena-base',
+    '//third-party/jena:jena-core',
+    '//third-party/jena:jena-iri',
+    '//third-party/jena:jena-shaded-guava',
+    '//third-party/jena:jena-tdb',
+    '//third-party/juliusdavies:not-yet-commons-ssl',
+    '//third-party/logging:jboss-logging',
+    '//third-party/poi:poi',
+    '//third-party/slf4j:slf4j-log4j12',
+    '//third-party/velocity:velocity'
+  ],
+)
+

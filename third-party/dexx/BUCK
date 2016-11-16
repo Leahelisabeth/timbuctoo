@@ -1,0 +1,10 @@
+prebuilt_jar(
+  name = 'collection',
+  maven_coords = 'com.github.andrewoma.dexx:collection:jar:0.6',
+  binary_jar = 'collection-0.6.jar',
+  source_jar = 'collection-0.6-sources.jar',
+  visibility = [
+    'PUBLIC'
+  ],
+)
+

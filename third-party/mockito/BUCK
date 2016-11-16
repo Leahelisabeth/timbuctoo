@@ -1,0 +1,10 @@
+prebuilt_jar(
+  name = 'mockito-all',
+  maven_coords = 'org.mockito:mockito-all:jar:1.9.5',
+  binary_jar = 'mockito-all-1.9.5.jar',
+  source_jar = 'mockito-all-1.9.5-sources.jar',
+  visibility = [
+    '//third-party/huygens:huygens-persistence'
+  ],
+)
+

@@ -1,0 +1,108 @@
+prebuilt_jar(
+  name = 'jena-arq',
+  maven_coords = 'org.apache.jena:jena-arq:jar:3.1.0',
+  binary_jar = 'jena-arq-3.1.0.jar',
+  source_jar = 'jena-arq-3.1.0-sources.jar',
+  deps = [
+    ':jena-core',
+    ':jena-shaded-guava',
+    '//third-party/commons:commons-csv',
+    '//third-party/commons:commons-lang3',
+    '//third-party/httpcomponents:httpclient',
+    '//third-party/httpcomponents:httpclient-cache',
+    '//third-party/jsonld-java:jsonld-java',
+    '//third-party/log4j:log4j',
+    '//third-party/slf4j:jcl-over-slf4j',
+    '//third-party/slf4j:slf4j-api',
+    '//third-party/slf4j:slf4j-log4j12',
+    '//third-party/thrift:libthrift'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'jena-base',
+  maven_coords = 'org.apache.jena:jena-base:jar:3.1.0',
+  binary_jar = 'jena-base-3.1.0.jar',
+  source_jar = 'jena-base-3.1.0-sources.jar',
+  deps = [
+    ':jena-shaded-guava',
+    '//third-party/commons:commons-csv',
+    '//third-party/commons:commons-lang3',
+    '//third-party/dexx:collection',
+    '//third-party/log4j:log4j',
+    '//third-party/slf4j:slf4j-api',
+    '//third-party/slf4j:slf4j-log4j12'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'jena-core',
+  maven_coords = 'org.apache.jena:jena-core:jar:3.1.0',
+  binary_jar = 'jena-core-3.1.0.jar',
+  source_jar = 'jena-core-3.1.0-sources.jar',
+  deps = [
+    ':jena-base',
+    ':jena-iri',
+    '//third-party/commons-cli:commons-cli',
+    '//third-party/log4j:log4j',
+    '//third-party/slf4j:slf4j-api',
+    '//third-party/slf4j:slf4j-log4j12',
+    '//third-party/xerces:xercesImpl'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'jena-iri',
+  maven_coords = 'org.apache.jena:jena-iri:jar:3.1.0',
+  binary_jar = 'jena-iri-3.1.0.jar',
+  source_jar = 'jena-iri-3.1.0-sources.jar',
+  deps = [
+    '//third-party/log4j:log4j',
+    '//third-party/slf4j:slf4j-api',
+    '//third-party/slf4j:slf4j-log4j12'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'jena-shaded-guava',
+  maven_coords = 'org.apache.jena:jena-shaded-guava:jar:3.1.0',
+  binary_jar = 'jena-shaded-guava-3.1.0.jar',
+  source_jar = 'jena-shaded-guava-3.1.0-sources.jar',
+  deps = [
+    '//third-party/log4j:log4j',
+    '//third-party/slf4j:slf4j-api',
+    '//third-party/slf4j:slf4j-log4j12'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'jena-tdb',
+  maven_coords = 'org.apache.jena:jena-tdb:jar:3.1.0',
+  binary_jar = 'jena-tdb-3.1.0.jar',
+  source_jar = 'jena-tdb-3.1.0-sources.jar',
+  deps = [
+    ':jena-arq',
+    '//third-party/log4j:log4j',
+    '//third-party/slf4j:slf4j-api',
+    '//third-party/slf4j:slf4j-log4j12'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+

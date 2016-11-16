@@ -1,0 +1,30 @@
+prebuilt_jar(
+  name = 'commons-csv',
+  maven_coords = 'org.apache.commons:commons-csv:jar:1.0',
+  binary_jar = 'commons-csv-1.0.jar',
+  source_jar = 'commons-csv-1.0-sources.jar',
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'commons-lang3',
+  maven_coords = 'org.apache.commons:commons-lang3:jar:3.4',
+  binary_jar = 'commons-lang3-3.4.jar',
+  source_jar = 'commons-lang3-3.4-sources.jar',
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'commons-pool2',
+  maven_coords = 'org.apache.commons:commons-pool2:jar:2.4.2',
+  binary_jar = 'commons-pool2-2.4.2.jar',
+  source_jar = 'commons-pool2-2.4.2-sources.jar',
+  visibility = [
+    'PUBLIC'
+  ],
+)
+

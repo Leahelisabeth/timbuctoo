@@ -1,0 +1,10 @@
+prebuilt_jar(
+  name = 'lucene-core',
+  maven_coords = 'org.apache.lucene:lucene-core:jar:3.6.2',
+  binary_jar = 'lucene-core-3.6.2.jar',
+  source_jar = 'lucene-core-3.6.2-sources.jar',
+  visibility = [
+    'PUBLIC'
+  ],
+)
+

@@ -1,0 +1,73 @@
+prebuilt_jar(
+  name = 'jackson-datatype-guava',
+  maven_coords = 'com.fasterxml.jackson.datatype:jackson-datatype-guava:jar:2.6.3',
+  binary_jar = 'jackson-datatype-guava-2.6.3.jar',
+  source_jar = 'jackson-datatype-guava-2.6.3-sources.jar',
+  deps = [
+    '//third-party/core:jackson-core',
+    '//third-party/core:jackson-databind',
+    '//third-party/guava:guava'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'jackson-datatype-jdk7',
+  maven_coords = 'com.fasterxml.jackson.datatype:jackson-datatype-jdk7:jar:2.6.3',
+  binary_jar = 'jackson-datatype-jdk7-2.6.3.jar',
+  source_jar = 'jackson-datatype-jdk7-2.6.3-sources.jar',
+  deps = [
+    '//third-party/core:jackson-core',
+    '//third-party/core:jackson-databind'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'jackson-datatype-jdk8',
+  maven_coords = 'com.fasterxml.jackson.datatype:jackson-datatype-jdk8:jar:2.6.3',
+  binary_jar = 'jackson-datatype-jdk8-2.6.3.jar',
+  source_jar = 'jackson-datatype-jdk8-2.6.3-sources.jar',
+  deps = [
+    '//third-party/core:jackson-core',
+    '//third-party/core:jackson-databind'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'jackson-datatype-joda',
+  maven_coords = 'com.fasterxml.jackson.datatype:jackson-datatype-joda:jar:2.6.3',
+  binary_jar = 'jackson-datatype-joda-2.6.3.jar',
+  source_jar = 'jackson-datatype-joda-2.6.3-sources.jar',
+  deps = [
+    '//third-party/core:jackson-annotations',
+    '//third-party/core:jackson-core',
+    '//third-party/core:jackson-databind',
+    '//third-party/joda-time:joda-time'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'jackson-datatype-jsr310',
+  maven_coords = 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:jar:2.6.3',
+  binary_jar = 'jackson-datatype-jsr310-2.6.3.jar',
+  source_jar = 'jackson-datatype-jsr310-2.6.3-sources.jar',
+  deps = [
+    '//third-party/core:jackson-core',
+    '//third-party/core:jackson-databind'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+

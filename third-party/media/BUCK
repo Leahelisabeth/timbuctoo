@@ -1,0 +1,33 @@
+prebuilt_jar(
+  name = 'jersey-media-jaxb',
+  maven_coords = 'org.glassfish.jersey.media:jersey-media-jaxb:jar:2.22.1',
+  binary_jar = 'jersey-media-jaxb-2.22.1.jar',
+  source_jar = 'jersey-media-jaxb-2.22.1-sources.jar',
+  deps = [
+    '//third-party/bind:jaxb-api',
+    '//third-party/core:jersey-common',
+    '//third-party/external:javax.inject',
+    '//third-party/hk2:hk2-api',
+    '//third-party/hk2:hk2-locator',
+    '//third-party/hk2:osgi-resource-locator'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'jersey-media-multipart',
+  maven_coords = 'org.glassfish.jersey.media:jersey-media-multipart:jar:2.22.1',
+  binary_jar = 'jersey-media-multipart-2.22.1.jar',
+  source_jar = 'jersey-media-multipart-2.22.1-sources.jar',
+  deps = [
+    '//third-party/core:jersey-common',
+    '//third-party/core:jersey-server',
+    '//third-party/mimepull:mimepull'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+

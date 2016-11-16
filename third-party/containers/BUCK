@@ -1,0 +1,33 @@
+prebuilt_jar(
+  name = 'jersey-container-servlet',
+  maven_coords = 'org.glassfish.jersey.containers:jersey-container-servlet:jar:2.22.1',
+  binary_jar = 'jersey-container-servlet-2.22.1.jar',
+  source_jar = 'jersey-container-servlet-2.22.1-sources.jar',
+  deps = [
+    ':jersey-container-servlet-core',
+    '//third-party/core:jersey-common',
+    '//third-party/core:jersey-server',
+    '//third-party/rs:javax.ws.rs-api',
+    '//third-party/servlet:javax.servlet-api'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'jersey-container-servlet-core',
+  maven_coords = 'org.glassfish.jersey.containers:jersey-container-servlet-core:jar:2.22.1',
+  binary_jar = 'jersey-container-servlet-core-2.22.1.jar',
+  source_jar = 'jersey-container-servlet-core-2.22.1-sources.jar',
+  deps = [
+    '//third-party/core:jersey-common',
+    '//third-party/core:jersey-server',
+    '//third-party/external:javax.inject',
+    '//third-party/rs:javax.ws.rs-api'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+

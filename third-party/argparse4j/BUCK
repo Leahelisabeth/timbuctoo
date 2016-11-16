@@ -1,0 +1,10 @@
+prebuilt_jar(
+  name = 'argparse4j',
+  maven_coords = 'net.sourceforge.argparse4j:argparse4j:jar:0.6.0',
+  binary_jar = 'argparse4j-0.6.0.jar',
+  source_jar = 'argparse4j-0.6.0-sources.jar',
+  visibility = [
+    'PUBLIC'
+  ],
+)
+

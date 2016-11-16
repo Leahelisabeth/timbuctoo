@@ -2,12 +2,10 @@
   source_level = 8
   target_level = 8
 
-[buildfile]
-  includes = //BUCKDEFS
-
 [maven_repositories]
+  huygens = http://maven.huygens.knaw.nl/repository/
+  mbknor = https://raw.githubusercontent.com/mbknor/mbknor.github.com/master/m2repo/releases
   central = https://repo1.maven.org/maven2
-  m2 = ~/.m2/repository
 
 [project]
   allow_symlinks = forbid

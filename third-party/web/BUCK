@@ -1,0 +1,14 @@
+prebuilt_jar(
+  name = 'javax.el',
+  maven_coords = 'org.glassfish.web:javax.el:jar:2.2.4',
+  binary_jar = 'javax.el-2.2.4.jar',
+  source_jar = 'javax.el-2.2.4-sources.jar',
+  deps = [
+    '//third-party/el:javax.el-api'
+  ],
+  visibility = [
+    '//third-party/ext:jersey-bean-validation',
+    '//third-party/hibernate:hibernate-validator'
+  ],
+)
+

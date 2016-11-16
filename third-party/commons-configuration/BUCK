@@ -1,0 +1,19 @@
+prebuilt_jar(
+  name = 'commons-configuration',
+  maven_coords = 'commons-configuration:commons-configuration:jar:1.10',
+  binary_jar = 'commons-configuration-1.10.jar',
+  source_jar = 'commons-configuration-1.10-sources.jar',
+  deps = [
+    '//third-party/commons-codec:commons-codec',
+    '//third-party/commons-collections:commons-collections',
+    '//third-party/commons-lang:commons-lang',
+    '//third-party/commons-logging:commons-logging',
+    '//third-party/log4j:log4j',
+    '//third-party/xml-apis:xml-apis',
+    '//third-party/xml-resolver:xml-resolver'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+

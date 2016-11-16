@@ -1,0 +1,10 @@
+prebuilt_jar(
+  name = 'bcprov-jdk15',
+  maven_coords = 'org.bouncycastle:bcprov-jdk15:jar:1.46',
+  binary_jar = 'bcprov-jdk15-1.46.jar',
+  source_jar = 'bcprov-jdk15-1.46-sources.jar',
+  visibility = [
+    '//third-party/opensaml:xmltooling'
+  ],
+)
+

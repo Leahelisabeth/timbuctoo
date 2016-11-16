@@ -1,0 +1,13 @@
+prebuilt_jar(
+  name = 'hawtbuf',
+  maven_coords = 'org.fusesource.hawtbuf:hawtbuf:jar:1.11',
+  binary_jar = 'hawtbuf-1.11.jar',
+  source_jar = 'hawtbuf-1.11-sources.jar',
+  deps = [
+    '//third-party/commons-logging:commons-logging'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+

@@ -1,0 +1,10 @@
+prebuilt_jar(
+  name = 'javatuples',
+  maven_coords = 'org.javatuples:javatuples:jar:1.2',
+  binary_jar = 'javatuples-1.2.jar',
+  source_jar = 'javatuples-1.2-sources.jar',
+  visibility = [
+    'PUBLIC'
+  ],
+)
+

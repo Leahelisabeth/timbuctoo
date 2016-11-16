@@ -1,0 +1,10 @@
+prebuilt_jar(
+  name = 'activation',
+  maven_coords = 'javax.activation:activation:jar:1.1',
+  binary_jar = 'activation-1.1.jar',
+  source_jar = 'activation-1.1-sources.jar',
+  visibility = [
+    '//third-party/bind:jaxb-api'
+  ],
+)
+

@@ -1,0 +1,28 @@
+prebuilt_jar(
+  name = 'jcabi-log',
+  maven_coords = 'com.jcabi:jcabi-log:jar:0.14',
+  binary_jar = 'jcabi-log-0.14.jar',
+  source_jar = 'jcabi-log-0.14-sources.jar',
+  deps = [
+    '//third-party/log4j:log4j',
+    '//third-party/slf4j:slf4j-api'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'jcabi-manifests',
+  maven_coords = 'com.jcabi:jcabi-manifests:jar:1.1',
+  binary_jar = 'jcabi-manifests-1.1.jar',
+  source_jar = 'jcabi-manifests-1.1-sources.jar',
+  deps = [
+    ':jcabi-log',
+    '//third-party/el:javax.el-api'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+

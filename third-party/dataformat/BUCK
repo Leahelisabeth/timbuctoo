@@ -1,0 +1,15 @@
+prebuilt_jar(
+  name = 'jackson-dataformat-yaml',
+  maven_coords = 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:jar:2.6.3',
+  binary_jar = 'jackson-dataformat-yaml-2.6.3.jar',
+  source_jar = 'jackson-dataformat-yaml-2.6.3-sources.jar',
+  deps = [
+    '//third-party/core:jackson-core',
+    '//third-party/core:jackson-databind',
+    '//third-party/yaml:snakeyaml'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+

@@ -1,0 +1,15 @@
+prebuilt_jar(
+  name = 'xmlsec',
+  maven_coords = 'org.apache.santuario:xmlsec:jar:1.4.5',
+  binary_jar = 'xmlsec-1.4.5.jar',
+  deps = [
+    '//third-party/commons-logging:commons-logging',
+    '//third-party/xalan:xalan',
+    '//third-party/xerces:xercesImpl',
+    '//third-party/xml-apis:xml-apis'
+  ],
+  visibility = [
+    '//third-party/opensaml:xmltooling'
+  ],
+)
+

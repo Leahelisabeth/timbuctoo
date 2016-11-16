@@ -1,0 +1,18 @@
+prebuilt_jar(
+  name = 'hibernate-validator',
+  maven_coords = 'org.hibernate:hibernate-validator:jar:5.2.2.Final',
+  binary_jar = 'hibernate-validator-5.2.2.Final.jar',
+  source_jar = 'hibernate-validator-5.2.2.Final-sources.jar',
+  deps = [
+    '//third-party/el:javax.el-api',
+    '//third-party/fasterxml:classmate',
+    '//third-party/joda-time:joda-time',
+    '//third-party/logging:jboss-logging',
+    '//third-party/validation:validation-api',
+    '//third-party/web:javax.el'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+

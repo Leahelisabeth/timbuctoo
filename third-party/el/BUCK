@@ -1,0 +1,13 @@
+prebuilt_jar(
+  name = 'javax.el-api',
+  maven_coords = 'javax.el:javax.el-api:jar:2.2.4',
+  binary_jar = 'javax.el-api-2.2.4.jar',
+  source_jar = 'javax.el-api-2.2.4-sources.jar',
+  visibility = [
+    '//third-party/ext:jersey-bean-validation',
+    '//third-party/hibernate:hibernate-validator',
+    '//third-party/jcabi:jcabi-manifests',
+    '//third-party/web:javax.el'
+  ],
+)
+

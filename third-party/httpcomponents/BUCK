@@ -1,0 +1,101 @@
+prebuilt_jar(
+  name = 'fluent-hc',
+  maven_coords = 'org.apache.httpcomponents:fluent-hc:jar:4.2.5',
+  binary_jar = 'fluent-hc-4.2.5.jar',
+  source_jar = 'fluent-hc-4.2.5-sources.jar',
+  deps = [
+    ':httpclient',
+    '//third-party/commons-logging:commons-logging'
+  ],
+)
+
+prebuilt_jar(
+  name = 'httpclient',
+  maven_coords = 'org.apache.httpcomponents:httpclient:jar:4.5.1',
+  binary_jar = 'httpclient-4.5.1.jar',
+  source_jar = 'httpclient-4.5.1-sources.jar',
+  deps = [
+    ':httpcore',
+    '//third-party/commons-codec:commons-codec',
+    '//third-party/commons-logging:commons-logging'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'httpclient-cache',
+  maven_coords = 'org.apache.httpcomponents:httpclient-cache:jar:4.2.6',
+  binary_jar = 'httpclient-cache-4.2.6.jar',
+  source_jar = 'httpclient-cache-4.2.6-sources.jar',
+  deps = [
+    ':httpclient',
+    '//third-party/commons-logging:commons-logging'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'httpclient-osgi',
+  maven_coords = 'org.apache.httpcomponents:httpclient-osgi:jar:4.2.5',
+  binary_jar = 'httpclient-osgi-4.2.5.jar',
+  source_jar = 'httpclient-osgi-4.2.5-sources.jar',
+  deps = [
+    ':fluent-hc',
+    ':httpclient',
+    ':httpclient-cache',
+    ':httpmime',
+    '//third-party/commons-codec:commons-codec'
+  ],
+  visibility = [
+    '//third-party/jsonld-java:jsonld-java'
+  ],
+)
+
+prebuilt_jar(
+  name = 'httpcore',
+  maven_coords = 'org.apache.httpcomponents:httpcore:jar:4.4.4',
+  binary_jar = 'httpcore-4.4.4.jar',
+  source_jar = 'httpcore-4.4.4-sources.jar',
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'httpcore-nio',
+  maven_coords = 'org.apache.httpcomponents:httpcore-nio:jar:4.2.5',
+  binary_jar = 'httpcore-nio-4.2.5.jar',
+  source_jar = 'httpcore-nio-4.2.5-sources.jar',
+  deps = [
+    ':httpcore'
+  ],
+)
+
+prebuilt_jar(
+  name = 'httpcore-osgi',
+  maven_coords = 'org.apache.httpcomponents:httpcore-osgi:jar:4.2.5',
+  binary_jar = 'httpcore-osgi-4.2.5.jar',
+  source_jar = 'httpcore-osgi-4.2.5-sources.jar',
+  deps = [
+    ':httpcore',
+    ':httpcore-nio'
+  ],
+  visibility = [
+    '//third-party/jsonld-java:jsonld-java'
+  ],
+)
+
+prebuilt_jar(
+  name = 'httpmime',
+  maven_coords = 'org.apache.httpcomponents:httpmime:jar:4.2.5',
+  binary_jar = 'httpmime-4.2.5.jar',
+  source_jar = 'httpmime-4.2.5-sources.jar',
+  deps = [
+    ':httpcore'
+  ],
+)
+

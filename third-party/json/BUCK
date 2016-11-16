@@ -1,0 +1,9 @@
+prebuilt_jar(
+  name = 'json',
+  maven_coords = 'org.json:json:jar:20090211',
+  binary_jar = 'json-20090211.jar',
+  visibility = [
+    'PUBLIC'
+  ],
+)
+

@@ -1,0 +1,10 @@
+prebuilt_jar(
+  name = 'opencsv',
+  maven_coords = 'net.sf.opencsv:opencsv:jar:2.3',
+  binary_jar = 'opencsv-2.3.jar',
+  source_jar = 'opencsv-2.3-sources.jar',
+  visibility = [
+    'PUBLIC'
+  ],
+)
+

@@ -1,0 +1,14 @@
+prebuilt_jar(
+  name = 'libthrift',
+  maven_coords = 'org.apache.thrift:libthrift:jar:0.9.2',
+  binary_jar = 'libthrift-0.9.2.jar',
+  deps = [
+    '//third-party/httpcomponents:httpclient',
+    '//third-party/httpcomponents:httpcore',
+    '//third-party/slf4j:slf4j-api'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+

@@ -1,0 +1,34 @@
+prebuilt_jar(
+  name = 'jersey-bean-validation',
+  maven_coords = 'org.glassfish.jersey.ext:jersey-bean-validation:jar:2.22.1',
+  binary_jar = 'jersey-bean-validation-2.22.1.jar',
+  source_jar = 'jersey-bean-validation-2.22.1-sources.jar',
+  deps = [
+    '//third-party/core:jersey-common',
+    '//third-party/core:jersey-server',
+    '//third-party/el:javax.el-api',
+    '//third-party/external:javax.inject',
+    '//third-party/hibernate:hibernate-validator',
+    '//third-party/rs:javax.ws.rs-api',
+    '//third-party/validation:validation-api',
+    '//third-party/web:javax.el'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'jersey-metainf-services',
+  maven_coords = 'org.glassfish.jersey.ext:jersey-metainf-services:jar:2.22.1',
+  binary_jar = 'jersey-metainf-services-2.22.1.jar',
+  source_jar = 'jersey-metainf-services-2.22.1-sources.jar',
+  deps = [
+    '//third-party/core:jersey-common',
+    '//third-party/rs:javax.ws.rs-api'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+

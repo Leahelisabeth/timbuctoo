@@ -1,0 +1,109 @@
+prebuilt_jar(
+  name = 'groovy',
+  maven_coords = 'org.codehaus.groovy:groovy:jar:2.4.1',
+  binary_jar = 'groovy-2.4.1.jar',
+  source_jar = 'groovy-2.4.1-sources.jar',
+  deps = [
+    '//third-party/ivy:ivy'
+  ],
+  visibility = [
+    '//third-party/tinkerpop:gremlin-groovy'
+  ],
+)
+
+prebuilt_jar(
+  name = 'groovy-console',
+  maven_coords = 'org.codehaus.groovy:groovy-console:jar:2.4.1',
+  binary_jar = 'groovy-console-2.4.1.jar',
+  source_jar = 'groovy-console-2.4.1-sources.jar',
+  deps = [
+    ':groovy',
+    ':groovy-swing',
+    ':groovy-templates'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'groovy-groovysh',
+  maven_coords = 'org.codehaus.groovy:groovy-groovysh:jar:2.4.1',
+  binary_jar = 'groovy-groovysh-2.4.1.jar',
+  source_jar = 'groovy-groovysh-2.4.1-sources.jar',
+  deps = [
+    ':groovy',
+    ':groovy-console',
+    '//third-party/jline:jline'
+  ],
+  visibility = [
+    '//third-party/tinkerpop:gremlin-groovy'
+  ],
+)
+
+prebuilt_jar(
+  name = 'groovy-json',
+  maven_coords = 'org.codehaus.groovy:groovy-json:jar:2.4.1',
+  binary_jar = 'groovy-json-2.4.1.jar',
+  source_jar = 'groovy-json-2.4.1-sources.jar',
+  deps = [
+    ':groovy'
+  ],
+  visibility = [
+    '//third-party/tinkerpop:gremlin-groovy'
+  ],
+)
+
+prebuilt_jar(
+  name = 'groovy-jsr223',
+  maven_coords = 'org.codehaus.groovy:groovy-jsr223:jar:2.4.1',
+  binary_jar = 'groovy-jsr223-2.4.1.jar',
+  source_jar = 'groovy-jsr223-2.4.1-sources.jar',
+  deps = [
+    ':groovy'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'groovy-swing',
+  maven_coords = 'org.codehaus.groovy:groovy-swing:jar:2.4.1',
+  binary_jar = 'groovy-swing-2.4.1.jar',
+  source_jar = 'groovy-swing-2.4.1-sources.jar',
+  deps = [
+    ':groovy'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'groovy-templates',
+  maven_coords = 'org.codehaus.groovy:groovy-templates:jar:2.4.1',
+  binary_jar = 'groovy-templates-2.4.1.jar',
+  source_jar = 'groovy-templates-2.4.1-sources.jar',
+  deps = [
+    ':groovy',
+    ':groovy-xml'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'groovy-xml',
+  maven_coords = 'org.codehaus.groovy:groovy-xml:jar:2.4.1',
+  binary_jar = 'groovy-xml-2.4.1.jar',
+  source_jar = 'groovy-xml-2.4.1-sources.jar',
+  deps = [
+    ':groovy'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+

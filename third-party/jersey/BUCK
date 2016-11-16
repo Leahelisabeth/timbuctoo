@@ -1,0 +1,62 @@
+prebuilt_jar(
+  name = 'jersey-core',
+  maven_coords = 'com.sun.jersey:jersey-core:jar:1.18',
+  binary_jar = 'jersey-core-1.18.jar',
+  source_jar = 'jersey-core-1.18-sources.jar',
+  deps = [
+    '//third-party/bind:jaxb-api'
+  ],
+  visibility = [
+    '//third-party/huygens:security-core'
+  ],
+)
+
+prebuilt_jar(
+  name = 'jersey-json',
+  maven_coords = 'com.sun.jersey:jersey-json:jar:1.18',
+  binary_jar = 'jersey-json-1.18.jar',
+  source_jar = 'jersey-json-1.18-sources.jar',
+  deps = [
+    ':jersey-core',
+    '//third-party/bind:jaxb-impl',
+    '//third-party/jackson:jackson-core-asl',
+    '//third-party/jackson:jackson-jaxrs',
+    '//third-party/jackson:jackson-mapper-asl',
+    '//third-party/jackson:jackson-xc',
+    '//third-party/jettison:jettison'
+  ],
+  visibility = [
+    '//third-party/huygens:security-core'
+  ],
+)
+
+prebuilt_jar(
+  name = 'jersey-server',
+  maven_coords = 'com.sun.jersey:jersey-server:jar:1.18',
+  binary_jar = 'jersey-server-1.18.jar',
+  source_jar = 'jersey-server-1.18-sources.jar',
+  deps = [
+    ':jersey-core',
+    '//third-party/asm:asm',
+    '//third-party/bind:jaxb-api'
+  ],
+  visibility = [
+    '//third-party/huygens:security-core'
+  ],
+)
+
+prebuilt_jar(
+  name = 'jersey-servlet',
+  maven_coords = 'com.sun.jersey:jersey-servlet:jar:1.18',
+  binary_jar = 'jersey-servlet-1.18.jar',
+  source_jar = 'jersey-servlet-1.18-sources.jar',
+  deps = [
+    ':jersey-server',
+    '//third-party/servlet:javax.servlet-api'
+  ],
+  visibility = [
+    '//third-party/contribs:jersey-guice',
+    '//third-party/huygens:security-core'
+  ],
+)
+

@@ -1,0 +1,15 @@
+prebuilt_jar(
+  name = 'logback-gelf',
+  maven_coords = 'me.moocar:logback-gelf:jar:0.12',
+  binary_jar = 'logback-gelf-0.12.jar',
+  source_jar = 'logback-gelf-0.12-sources.jar',
+  deps = [
+    '//third-party/gson:gson',
+    '//third-party/logback:logback-classic',
+    '//third-party/slf4j:slf4j-api'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+

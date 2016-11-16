@@ -1,0 +1,10 @@
+prebuilt_jar(
+  name = 'hppc',
+  maven_coords = 'com.carrotsearch:hppc:jar:0.7.1',
+  binary_jar = 'hppc-0.7.1.jar',
+  source_jar = 'hppc-0.7.1-sources.jar',
+  visibility = [
+    'PUBLIC'
+  ],
+)
+

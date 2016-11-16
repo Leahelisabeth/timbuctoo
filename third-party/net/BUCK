@@ -1,0 +1,9 @@
+prebuilt_jar(
+  name = 'handle-client',
+  maven_coords = 'handle.net:handle-client:jar:7.3.1',
+  binary_jar = 'handle-client-7.3.1.jar',
+  visibility = [
+    'PUBLIC'
+  ],
+)
+

@@ -1,0 +1,10 @@
+prebuilt_jar(
+  name = 'javax.ws.rs-api',
+  maven_coords = 'javax.ws.rs:javax.ws.rs-api:jar:2.0.1',
+  binary_jar = 'javax.ws.rs-api-2.0.1.jar',
+  source_jar = 'javax.ws.rs-api-2.0.1-sources.jar',
+  visibility = [
+    'PUBLIC'
+  ],
+)
+

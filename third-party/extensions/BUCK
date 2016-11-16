@@ -1,0 +1,13 @@
+prebuilt_jar(
+  name = 'guice-servlet',
+  maven_coords = 'com.google.inject.extensions:guice-servlet:jar:3.0',
+  binary_jar = 'guice-servlet-3.0.jar',
+  source_jar = 'guice-servlet-3.0-sources.jar',
+  deps = [
+    '//third-party/inject:guice'
+  ],
+  visibility = [
+    '//third-party/contribs:jersey-guice'
+  ],
+)
+

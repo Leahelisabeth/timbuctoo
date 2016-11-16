@@ -1,0 +1,10 @@
+prebuilt_jar(
+  name = 'activemq-protobuf',
+  maven_coords = 'org.apache.activemq.protobuf:activemq-protobuf:jar:1.1',
+  binary_jar = 'activemq-protobuf-1.1.jar',
+  source_jar = 'activemq-protobuf-1.1-sources.jar',
+  visibility = [
+    'PUBLIC'
+  ],
+)
+

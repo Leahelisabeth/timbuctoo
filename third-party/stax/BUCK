@@ -1,0 +1,9 @@
+prebuilt_jar(
+  name = 'stax-api',
+  maven_coords = 'stax:stax-api:jar:1.0.1',
+  binary_jar = 'stax-api-1.0.1.jar',
+  visibility = [
+    'PUBLIC'
+  ],
+)
+

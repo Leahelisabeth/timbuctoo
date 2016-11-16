@@ -1,0 +1,15 @@
+prebuilt_jar(
+  name = 'concordion',
+  maven_coords = 'org.concordion:concordion:jar:1.5.1',
+  binary_jar = 'concordion-1.5.1.jar',
+  source_jar = 'concordion-1.5.1-sources.jar',
+  deps = [
+    '//third-party/junit:junit',
+    '//third-party/ognl:ognl',
+    '//third-party/xom:xom'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+

@@ -1,0 +1,10 @@
+prebuilt_jar(
+  name = 'classmate',
+  maven_coords = 'com.fasterxml:classmate:jar:1.1.0',
+  binary_jar = 'classmate-1.1.0.jar',
+  source_jar = 'classmate-1.1.0-sources.jar',
+  visibility = [
+    'PUBLIC'
+  ],
+)
+

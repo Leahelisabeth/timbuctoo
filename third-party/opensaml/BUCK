@@ -1,0 +1,58 @@
+prebuilt_jar(
+  name = 'opensaml',
+  maven_coords = 'org.opensaml:opensaml:jar:2.5.3',
+  binary_jar = 'opensaml-2.5.3.jar',
+  source_jar = 'opensaml-2.5.3-sources.jar',
+  deps = [
+    ':openws',
+    '//third-party/commons-codec:commons-codec',
+    '//third-party/commons-collections:commons-collections',
+    '//third-party/commons-lang:commons-lang',
+    '//third-party/esapi:esapi',
+    '//third-party/joda-time:joda-time',
+    '//third-party/velocity:velocity',
+    '//third-party/xalan:xalan',
+    '//third-party/xerces:xercesImpl',
+    '//third-party/xml-apis:xml-apis',
+    '//third-party/xml-resolver:xml-resolver'
+  ],
+  visibility = [
+    '//third-party/huygens:security-core'
+  ],
+)
+
+prebuilt_jar(
+  name = 'openws',
+  maven_coords = 'org.opensaml:openws:jar:1.4.4',
+  binary_jar = 'openws-1.4.4.jar',
+  source_jar = 'openws-1.4.4-sources.jar',
+  deps = [
+    ':xmltooling',
+    '//third-party/commons-codec:commons-codec',
+    '//third-party/commons-httpclient:commons-httpclient',
+    '//third-party/joda-time:joda-time',
+    '//third-party/xalan:xalan',
+    '//third-party/xerces:xercesImpl',
+    '//third-party/xml-apis:xml-apis',
+    '//third-party/xml-resolver:xml-resolver'
+  ],
+)
+
+prebuilt_jar(
+  name = 'xmltooling',
+  maven_coords = 'org.opensaml:xmltooling:jar:1.3.4',
+  binary_jar = 'xmltooling-1.3.4.jar',
+  source_jar = 'xmltooling-1.3.4-sources.jar',
+  deps = [
+    '//third-party/bouncycastle:bcprov-jdk15',
+    '//third-party/commons-codec:commons-codec',
+    '//third-party/joda-time:joda-time',
+    '//third-party/juliusdavies:not-yet-commons-ssl',
+    '//third-party/santuario:xmlsec',
+    '//third-party/xalan:xalan',
+    '//third-party/xerces:xercesImpl',
+    '//third-party/xml-apis:xml-apis',
+    '//third-party/xml-resolver:xml-resolver'
+  ],
+)
+

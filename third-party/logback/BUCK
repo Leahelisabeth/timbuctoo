@@ -1,0 +1,28 @@
+prebuilt_jar(
+  name = 'logback-classic',
+  maven_coords = 'ch.qos.logback:logback-classic:jar:1.1.3',
+  binary_jar = 'logback-classic-1.1.3.jar',
+  source_jar = 'logback-classic-1.1.3-sources.jar',
+  deps = [
+    ':logback-core',
+    '//third-party/slf4j:slf4j-api',
+    '//third-party/specs:geronimo-jms_1.1_spec'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'logback-core',
+  maven_coords = 'ch.qos.logback:logback-core:jar:1.1.3',
+  binary_jar = 'logback-core-1.1.3.jar',
+  source_jar = 'logback-core-1.1.3-sources.jar',
+  deps = [
+    '//third-party/specs:geronimo-jms_1.1_spec'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+

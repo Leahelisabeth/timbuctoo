@@ -1,0 +1,16 @@
+prebuilt_jar(
+  name = 'jersey-apache-connector',
+  maven_coords = 'org.glassfish.jersey.connectors:jersey-apache-connector:jar:2.22.1',
+  binary_jar = 'jersey-apache-connector-2.22.1.jar',
+  source_jar = 'jersey-apache-connector-2.22.1-sources.jar',
+  deps = [
+    '//third-party/core:jersey-client',
+    '//third-party/core:jersey-common',
+    '//third-party/httpcomponents:httpclient',
+    '//third-party/rs:javax.ws.rs-api'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+

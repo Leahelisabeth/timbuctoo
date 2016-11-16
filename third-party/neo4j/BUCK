@@ -1,0 +1,343 @@
+prebuilt_jar(
+  name = 'neo4j',
+  maven_coords = 'org.neo4j:neo4j:jar:2.3.0',
+  binary_jar = 'neo4j-2.3.0.jar',
+  source_jar = 'neo4j-2.3.0-sources.jar',
+  deps = [
+    ':neo4j-consistency-check',
+    ':neo4j-cypher',
+    ':neo4j-graph-algo',
+    ':neo4j-graph-matching',
+    ':neo4j-jmx',
+    ':neo4j-kernel',
+    ':neo4j-lucene-index',
+    ':neo4j-udc'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'neo4j-codegen',
+  maven_coords = 'org.neo4j:neo4j-codegen:jar:2.3.0',
+  binary_jar = 'neo4j-codegen-2.3.0.jar',
+  source_jar = 'neo4j-codegen-2.3.0-sources.jar',
+  deps = [
+    '//third-party/asm:asm',
+    '//third-party/commons:commons-lang3'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'neo4j-consistency-check',
+  maven_coords = 'org.neo4j:neo4j-consistency-check:jar:2.3.0',
+  binary_jar = 'neo4j-consistency-check-2.3.0.jar',
+  source_jar = 'neo4j-consistency-check-2.3.0-sources.jar',
+  deps = [
+    ':neo4j-consistency-check-legacy',
+    ':neo4j-kernel',
+    ':neo4j-lucene-index'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'neo4j-consistency-check-legacy',
+  maven_coords = 'org.neo4j:neo4j-consistency-check-legacy:jar:2.3.0',
+  binary_jar = 'neo4j-consistency-check-legacy-2.3.0.jar',
+  source_jar = 'neo4j-consistency-check-legacy-2.3.0-sources.jar',
+  deps = [
+    ':neo4j-kernel',
+    ':neo4j-lucene-index'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'neo4j-csv',
+  maven_coords = 'org.neo4j:neo4j-csv:jar:2.3.1',
+  binary_jar = 'neo4j-csv-2.3.1.jar',
+  source_jar = 'neo4j-csv-2.3.1-sources.jar',
+  deps = [
+    ':neo4j-primitive-collections'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'neo4j-cypher',
+  maven_coords = 'org.neo4j:neo4j-cypher:jar:2.3.0',
+  binary_jar = 'neo4j-cypher-2.3.0.jar',
+  source_jar = 'neo4j-cypher-2.3.0-sources.jar',
+  deps = [
+    ':neo4j-codegen',
+    ':neo4j-cypher-compiler-1.9_2.11',
+    ':neo4j-cypher-compiler-2.2_2.11',
+    ':neo4j-cypher-compiler-2.3',
+    ':neo4j-graph-algo',
+    ':neo4j-graph-matching',
+    ':neo4j-kernel',
+    ':neo4j-lucene-index',
+    '//third-party/concurrentlinkedhashmap:concurrentlinkedhashmap-lru',
+    '//third-party/modules:scala-parser-combinators_2.11',
+    '//third-party/opencsv:opencsv',
+    '//third-party/parboiled:parboiled-scala_2.11',
+    '//third-party/scala-lang:scala-library',
+    '//third-party/scala-lang:scala-reflect'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'neo4j-cypher-compiler-1.9_2.11',
+  maven_coords = 'org.neo4j:neo4j-cypher-compiler-1.9_2.11:jar:2.0.5',
+  binary_jar = 'neo4j-cypher-compiler-1.9_2.11-2.0.5.jar',
+  source_jar = 'neo4j-cypher-compiler-1.9_2.11-2.0.5-sources.jar',
+  deps = [
+    ':neo4j-graph-algo',
+    ':neo4j-graph-matching',
+    ':neo4j-kernel',
+    ':neo4j-lucene-index',
+    '//third-party/scala-lang:scala-library'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'neo4j-cypher-compiler-2.2_2.11',
+  maven_coords = 'org.neo4j:neo4j-cypher-compiler-2.2_2.11:jar:2.2.6',
+  binary_jar = 'neo4j-cypher-compiler-2.2_2.11-2.2.6.jar',
+  source_jar = 'neo4j-cypher-compiler-2.2_2.11-2.2.6-sources.jar',
+  deps = [
+    ':neo4j-graph-algo',
+    ':neo4j-graph-matching',
+    ':neo4j-kernel',
+    ':neo4j-lucene-index',
+    '//third-party/concurrentlinkedhashmap:concurrentlinkedhashmap-lru',
+    '//third-party/parboiled:parboiled-scala_2.11',
+    '//third-party/scala-lang:scala-library',
+    '//third-party/scala-lang:scala-reflect'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'neo4j-cypher-compiler-2.3',
+  maven_coords = 'org.neo4j:neo4j-cypher-compiler-2.3:jar:2.3.0',
+  binary_jar = 'neo4j-cypher-compiler-2.3-2.3.0.jar',
+  source_jar = 'neo4j-cypher-compiler-2.3-2.3.0-sources.jar',
+  deps = [
+    ':neo4j-cypher-frontend-2.3',
+    ':neo4j-graph-algo',
+    ':neo4j-graph-matching',
+    ':neo4j-kernel',
+    '//third-party/concurrentlinkedhashmap:concurrentlinkedhashmap-lru',
+    '//third-party/parboiled:parboiled-scala_2.11',
+    '//third-party/scala-lang:scala-library',
+    '//third-party/scala-lang:scala-reflect'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'neo4j-cypher-frontend-2.3',
+  maven_coords = 'org.neo4j:neo4j-cypher-frontend-2.3:jar:2.3.0',
+  binary_jar = 'neo4j-cypher-frontend-2.3-2.3.0.jar',
+  source_jar = 'neo4j-cypher-frontend-2.3-2.3.0-sources.jar',
+  deps = [
+    '//third-party/commons:commons-lang3',
+    '//third-party/parboiled:parboiled-scala_2.11',
+    '//third-party/scala-lang:scala-library',
+    '//third-party/scala-lang:scala-reflect'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'neo4j-function',
+  maven_coords = 'org.neo4j:neo4j-function:jar:2.3.1',
+  binary_jar = 'neo4j-function-2.3.1.jar',
+  source_jar = 'neo4j-function-2.3.1-sources.jar',
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'neo4j-graph-algo',
+  maven_coords = 'org.neo4j:neo4j-graph-algo:jar:2.3.0',
+  binary_jar = 'neo4j-graph-algo-2.3.0.jar',
+  source_jar = 'neo4j-graph-algo-2.3.0-sources.jar',
+  deps = [
+    ':neo4j-kernel'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'neo4j-graph-matching',
+  maven_coords = 'org.neo4j:neo4j-graph-matching:jar:2.3.0',
+  binary_jar = 'neo4j-graph-matching-2.3.0.jar',
+  source_jar = 'neo4j-graph-matching-2.3.0-sources.jar',
+  deps = [
+    ':neo4j-kernel'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'neo4j-io',
+  maven_coords = 'org.neo4j:neo4j-io:jar:2.3.1',
+  binary_jar = 'neo4j-io-2.3.1.jar',
+  source_jar = 'neo4j-io-2.3.1-sources.jar',
+  deps = [
+    ':neo4j-primitive-collections',
+    ':neo4j-unsafe',
+    '//third-party/commons:commons-lang3'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'neo4j-jmx',
+  maven_coords = 'org.neo4j:neo4j-jmx:jar:2.3.0',
+  binary_jar = 'neo4j-jmx-2.3.0.jar',
+  source_jar = 'neo4j-jmx-2.3.0-sources.jar',
+  deps = [
+    ':neo4j-kernel'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'neo4j-kernel',
+  maven_coords = 'org.neo4j:neo4j-kernel:jar:2.3.0',
+  binary_jar = 'neo4j-kernel-2.3.0.jar',
+  source_jar = 'neo4j-kernel-2.3.0-sources.jar',
+  deps = [
+    ':neo4j-csv',
+    ':neo4j-io',
+    ':neo4j-logging',
+    ':neo4j-primitive-collections'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'neo4j-logging',
+  maven_coords = 'org.neo4j:neo4j-logging:jar:2.3.1',
+  binary_jar = 'neo4j-logging-2.3.1.jar',
+  source_jar = 'neo4j-logging-2.3.1-sources.jar',
+  deps = [
+    ':neo4j-io'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'neo4j-lucene-index',
+  maven_coords = 'org.neo4j:neo4j-lucene-index:jar:2.3.0',
+  binary_jar = 'neo4j-lucene-index-2.3.0.jar',
+  source_jar = 'neo4j-lucene-index-2.3.0-sources.jar',
+  deps = [
+    ':neo4j-kernel',
+    '//third-party/lucene:lucene-core'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'neo4j-primitive-collections',
+  maven_coords = 'org.neo4j:neo4j-primitive-collections:jar:2.3.1',
+  binary_jar = 'neo4j-primitive-collections-2.3.1.jar',
+  source_jar = 'neo4j-primitive-collections-2.3.1-sources.jar',
+  deps = [
+    ':neo4j-function',
+    ':neo4j-unsafe'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'neo4j-tinkerpop-api',
+  maven_coords = 'org.neo4j:neo4j-tinkerpop-api:jar:0.1',
+  binary_jar = 'neo4j-tinkerpop-api-0.1.jar',
+  source_jar = 'neo4j-tinkerpop-api-0.1-sources.jar',
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'neo4j-tinkerpop-api-impl',
+  maven_coords = 'org.neo4j:neo4j-tinkerpop-api-impl:jar:0.3-2.3.0',
+  binary_jar = 'neo4j-tinkerpop-api-impl-0.3-2.3.0.jar',
+  source_jar = 'neo4j-tinkerpop-api-impl-0.3-2.3.0-sources.jar',
+  deps = [
+    ':neo4j',
+    ':neo4j-tinkerpop-api'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'neo4j-udc',
+  maven_coords = 'org.neo4j:neo4j-udc:jar:2.3.0',
+  binary_jar = 'neo4j-udc-2.3.0.jar',
+  source_jar = 'neo4j-udc-2.3.0-sources.jar',
+  deps = [
+    ':neo4j-kernel'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'neo4j-unsafe',
+  maven_coords = 'org.neo4j:neo4j-unsafe:jar:2.3.1',
+  binary_jar = 'neo4j-unsafe-2.3.1.jar',
+  source_jar = 'neo4j-unsafe-2.3.1-sources.jar',
+  visibility = [
+    'PUBLIC'
+  ],
+)
+

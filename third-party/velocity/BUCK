@@ -1,0 +1,14 @@
+prebuilt_jar(
+  name = 'velocity',
+  maven_coords = 'velocity:velocity:jar:1.5',
+  binary_jar = 'velocity-1.5.jar',
+  deps = [
+    '//third-party/commons-collections:commons-collections',
+    '//third-party/commons-lang:commons-lang',
+    '//third-party/log4j:log4j'
+  ],
+  visibility = [
+    '//third-party/opensaml:opensaml'
+  ],
+)
+

@@ -1,0 +1,14 @@
+prebuilt_jar(
+  name = 'not-yet-commons-ssl',
+  maven_coords = 'ca.juliusdavies:not-yet-commons-ssl:jar:0.3.9',
+  binary_jar = 'not-yet-commons-ssl-0.3.9.jar',
+  source_jar = 'not-yet-commons-ssl-0.3.9-sources.jar',
+  deps = [
+    '//third-party/commons-httpclient:commons-httpclient',
+    '//third-party/log4j:log4j'
+  ],
+  visibility = [
+    '//third-party/opensaml:xmltooling'
+  ],
+)
+

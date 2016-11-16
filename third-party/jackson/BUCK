@@ -1,0 +1,51 @@
+prebuilt_jar(
+  name = 'jackson-core-asl',
+  maven_coords = 'org.codehaus.jackson:jackson-core-asl:jar:1.9.2',
+  binary_jar = 'jackson-core-asl-1.9.2.jar',
+  source_jar = 'jackson-core-asl-1.9.2-sources.jar',
+  visibility = [
+    '//third-party/jersey:jersey-json'
+  ],
+)
+
+prebuilt_jar(
+  name = 'jackson-jaxrs',
+  maven_coords = 'org.codehaus.jackson:jackson-jaxrs:jar:1.9.2',
+  binary_jar = 'jackson-jaxrs-1.9.2.jar',
+  source_jar = 'jackson-jaxrs-1.9.2-sources.jar',
+  deps = [
+    ':jackson-core-asl',
+    ':jackson-mapper-asl'
+  ],
+  visibility = [
+    '//third-party/jersey:jersey-json'
+  ],
+)
+
+prebuilt_jar(
+  name = 'jackson-mapper-asl',
+  maven_coords = 'org.codehaus.jackson:jackson-mapper-asl:jar:1.9.2',
+  binary_jar = 'jackson-mapper-asl-1.9.2.jar',
+  source_jar = 'jackson-mapper-asl-1.9.2-sources.jar',
+  deps = [
+    ':jackson-core-asl'
+  ],
+  visibility = [
+    '//third-party/jersey:jersey-json'
+  ],
+)
+
+prebuilt_jar(
+  name = 'jackson-xc',
+  maven_coords = 'org.codehaus.jackson:jackson-xc:jar:1.9.2',
+  binary_jar = 'jackson-xc-1.9.2.jar',
+  source_jar = 'jackson-xc-1.9.2-sources.jar',
+  deps = [
+    ':jackson-core-asl',
+    ':jackson-mapper-asl'
+  ],
+  visibility = [
+    '//third-party/jersey:jersey-json'
+  ],
+)
+

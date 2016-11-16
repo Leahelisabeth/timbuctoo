@@ -1,0 +1,14 @@
+prebuilt_jar(
+  name = 'jettison',
+  maven_coords = 'org.codehaus.jettison:jettison:jar:1.1',
+  binary_jar = 'jettison-1.1.jar',
+  source_jar = 'jettison-1.1-sources.jar',
+  deps = [
+    '//third-party/stax:stax-api'
+  ],
+  visibility = [
+    '//third-party/activemq:activemq-kahadb-store',
+    '//third-party/jersey:jersey-json'
+  ],
+)
+

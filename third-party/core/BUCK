@@ -1,0 +1,91 @@
+prebuilt_jar(
+  name = 'jackson-annotations',
+  maven_coords = 'com.fasterxml.jackson.core:jackson-annotations:jar:2.6.0',
+  binary_jar = 'jackson-annotations-2.6.0.jar',
+  source_jar = 'jackson-annotations-2.6.0-sources.jar',
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'jackson-core',
+  maven_coords = 'com.fasterxml.jackson.core:jackson-core:jar:2.6.3',
+  binary_jar = 'jackson-core-2.6.3.jar',
+  source_jar = 'jackson-core-2.6.3-sources.jar',
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'jackson-databind',
+  maven_coords = 'com.fasterxml.jackson.core:jackson-databind:jar:2.6.3',
+  binary_jar = 'jackson-databind-2.6.3.jar',
+  source_jar = 'jackson-databind-2.6.3-sources.jar',
+  deps = [
+    ':jackson-annotations',
+    ':jackson-core'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'jersey-client',
+  maven_coords = 'org.glassfish.jersey.core:jersey-client:jar:2.22.1',
+  binary_jar = 'jersey-client-2.22.1.jar',
+  source_jar = 'jersey-client-2.22.1-sources.jar',
+  deps = [
+    ':jersey-common',
+    '//third-party/external:javax.inject',
+    '//third-party/hk2:hk2-api',
+    '//third-party/hk2:hk2-locator',
+    '//third-party/rs:javax.ws.rs-api'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'jersey-common',
+  maven_coords = 'org.glassfish.jersey.core:jersey-common:jar:2.22.1',
+  binary_jar = 'jersey-common-2.22.1.jar',
+  source_jar = 'jersey-common-2.22.1-sources.jar',
+  deps = [
+    '//third-party/annotation:javax.annotation-api',
+    '//third-party/external:javax.inject',
+    '//third-party/hk2:hk2-api',
+    '//third-party/hk2:hk2-locator',
+    '//third-party/hk2:osgi-resource-locator',
+    '//third-party/repackaged:jersey-guava',
+    '//third-party/rs:javax.ws.rs-api'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'jersey-server',
+  maven_coords = 'org.glassfish.jersey.core:jersey-server:jar:2.22.1',
+  binary_jar = 'jersey-server-2.22.1.jar',
+  source_jar = 'jersey-server-2.22.1-sources.jar',
+  deps = [
+    ':jersey-client',
+    ':jersey-common',
+    '//third-party/annotation:javax.annotation-api',
+    '//third-party/external:javax.inject',
+    '//third-party/hk2:hk2-api',
+    '//third-party/hk2:hk2-locator',
+    '//third-party/media:jersey-media-jaxb',
+    '//third-party/rs:javax.ws.rs-api',
+    '//third-party/validation:validation-api'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+

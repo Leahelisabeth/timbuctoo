@@ -1,0 +1,10 @@
+prebuilt_jar(
+  name = 'validation-api',
+  maven_coords = 'javax.validation:validation-api:jar:1.1.0.Final',
+  binary_jar = 'validation-api-1.1.0.Final.jar',
+  source_jar = 'validation-api-1.1.0.Final-sources.jar',
+  visibility = [
+    'PUBLIC'
+  ],
+)
+

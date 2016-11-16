@@ -1,0 +1,14 @@
+prebuilt_jar(
+  name = 'hamcrest-json',
+  maven_coords = 'uk.co.datumedge:hamcrest-json:jar:0.2',
+  binary_jar = 'hamcrest-json-0.2.jar',
+  source_jar = 'hamcrest-json-0.2-sources.jar',
+  deps = [
+    '//third-party/hamcrest:hamcrest-core',
+    '//third-party/skyscreamer:jsonassert'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+

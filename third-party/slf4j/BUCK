@@ -1,0 +1,71 @@
+prebuilt_jar(
+  name = 'jcl-over-slf4j',
+  maven_coords = 'org.slf4j:jcl-over-slf4j:jar:1.7.12',
+  binary_jar = 'jcl-over-slf4j-1.7.12.jar',
+  source_jar = 'jcl-over-slf4j-1.7.12-sources.jar',
+  deps = [
+    ':slf4j-api'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'jul-to-slf4j',
+  maven_coords = 'org.slf4j:jul-to-slf4j:jar:1.7.12',
+  binary_jar = 'jul-to-slf4j-1.7.12.jar',
+  source_jar = 'jul-to-slf4j-1.7.12-sources.jar',
+  deps = [
+    ':slf4j-api'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'log4j-over-slf4j',
+  maven_coords = 'org.slf4j:log4j-over-slf4j:jar:1.7.12',
+  binary_jar = 'log4j-over-slf4j-1.7.12.jar',
+  source_jar = 'log4j-over-slf4j-1.7.12-sources.jar',
+  deps = [
+    ':slf4j-api'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'slf4j-api',
+  maven_coords = 'org.slf4j:slf4j-api:jar:1.7.7',
+  binary_jar = 'slf4j-api-1.7.7.jar',
+  source_jar = 'slf4j-api-1.7.7-sources.jar',
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'slf4j-log4j12',
+  maven_coords = 'org.slf4j:slf4j-log4j12:jar:1.7.5',
+  binary_jar = 'slf4j-log4j12-1.7.5.jar',
+  source_jar = 'slf4j-log4j12-1.7.5-sources.jar',
+  deps = [
+    ':slf4j-api',
+    '//third-party/log4j:log4j'
+  ],
+  visibility = [
+    '//third-party/huygens:huygens-persistence',
+    '//third-party/huygens:security-core',
+    '//third-party/jena:jena-arq',
+    '//third-party/jena:jena-base',
+    '//third-party/jena:jena-core',
+    '//third-party/jena:jena-iri',
+    '//third-party/jena:jena-shaded-guava',
+    '//third-party/jena:jena-tdb',
+    '//third-party/tinkerpop:gremlin-core'
+  ],
+)
+

@@ -1,0 +1,48 @@
+prebuilt_jar(
+  name = 'huygens-persistence',
+  maven_coords = 'nl.knaw.huygens:huygens-persistence:jar:2.2.0',
+  binary_jar = 'huygens-persistence-2.2.0.jar',
+  source_jar = 'huygens-persistence-2.2.0-sources.jar',
+  deps = [
+    '//third-party/commons-io:commons-io',
+    '//third-party/commons-logging:commons-logging',
+    '//third-party/guava:guava',
+    '//third-party/mockito:mockito-all',
+    '//third-party/net:handle-client',
+    '//third-party/slf4j:jcl-over-slf4j',
+    '//third-party/slf4j:slf4j-log4j12'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'security-core',
+  maven_coords = 'nl.knaw.huygens:security-core:jar:2.2.2.4',
+  binary_jar = 'security-core-2.2.2.4.jar',
+  source_jar = 'security-core-2.2.2.4-sources.jar',
+  deps = [
+    '//third-party/annotation:javax.annotation-api',
+    '//third-party/contribs:jersey-guice',
+    '//third-party/datatype:jackson-datatype-joda',
+    '//third-party/guava:guava',
+    '//third-party/inject:guice',
+    '//third-party/jaxrs:jackson-jaxrs-json-provider',
+    '//third-party/jersey:jersey-core',
+    '//third-party/jersey:jersey-json',
+    '//third-party/jersey:jersey-server',
+    '//third-party/jersey:jersey-servlet',
+    '//third-party/jiderhamn:classloader-leak-prevention',
+    '//third-party/log4j:log4j',
+    '//third-party/opensaml:opensaml',
+    '//third-party/servlet:javax.servlet-api',
+    '//third-party/slf4j:jul-to-slf4j',
+    '//third-party/slf4j:slf4j-api',
+    '//third-party/slf4j:slf4j-log4j12'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+

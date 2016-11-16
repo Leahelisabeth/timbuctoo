@@ -7,6 +7,22 @@ java_library(
     "//third-party/guava:guava"
   ],
   exported_deps = [
+    "//third-party/core:jackson-databind",
+  ],
+  visibility = [
+    "PUBLIC"
+  ],
+  tests = [':tests']
+)
+
+java_test(
+  name = 'tests',
+  srcs = glob(['src/test/java/**/*Test.java']),
+  deps = [
+    "//third-party/guava:guava",
+    "//third-party/junit:junit",
+    '//third-party/hamcrest:hamcrest-all',
+    ':ContractDiff'
   ],
   visibility = [
     "PUBLIC"

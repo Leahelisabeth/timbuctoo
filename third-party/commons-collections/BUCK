@@ -1,0 +1,10 @@
+prebuilt_jar(
+  name = 'commons-collections',
+  maven_coords = 'commons-collections:commons-collections:jar:3.0',
+  binary_jar = 'commons-collections-3.0.jar',
+  source_jar = 'commons-collections-3.0-sources.jar',
+  visibility = [
+    'PUBLIC'
+  ],
+)
+

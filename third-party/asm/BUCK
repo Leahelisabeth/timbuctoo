@@ -1,0 +1,10 @@
+prebuilt_jar(
+  name = 'asm',
+  maven_coords = 'asm:asm:jar:3.1',
+  binary_jar = 'asm-3.1.jar',
+  source_jar = 'asm-3.1-sources.jar',
+  visibility = [
+    'PUBLIC'
+  ],
+)
+

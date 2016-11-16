@@ -1,0 +1,29 @@
+prebuilt_jar(
+  name = 'jackson-module-afterburner',
+  maven_coords = 'com.fasterxml.jackson.module:jackson-module-afterburner:jar:2.6.3',
+  binary_jar = 'jackson-module-afterburner-2.6.3.jar',
+  source_jar = 'jackson-module-afterburner-2.6.3-sources.jar',
+  deps = [
+    '//third-party/core:jackson-core',
+    '//third-party/core:jackson-databind'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'jackson-module-jaxb-annotations',
+  maven_coords = 'com.fasterxml.jackson.module:jackson-module-jaxb-annotations:jar:2.6.3',
+  binary_jar = 'jackson-module-jaxb-annotations-2.6.3.jar',
+  source_jar = 'jackson-module-jaxb-annotations-2.6.3-sources.jar',
+  deps = [
+    '//third-party/bind:jaxb-api',
+    '//third-party/core:jackson-core',
+    '//third-party/core:jackson-databind'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+

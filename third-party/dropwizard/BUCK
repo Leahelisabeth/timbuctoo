@@ -1,0 +1,303 @@
+prebuilt_jar(
+  name = 'dropwizard-activemq',
+  maven_coords = 'com.kjetland.dropwizard:dropwizard-activemq:jar:0.3.13',
+  binary_jar = 'dropwizard-activemq-0.3.13.jar',
+  source_jar = 'dropwizard-activemq-0.3.13-sources.jar',
+  deps = [
+    ':dropwizard-core',
+    '//third-party/activemq:activemq-client',
+    '//third-party/activemq:activemq-jms-pool'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'dropwizard-assets',
+  maven_coords = 'io.dropwizard:dropwizard-assets:jar:0.9.1',
+  binary_jar = 'dropwizard-assets-0.9.1.jar',
+  source_jar = 'dropwizard-assets-0.9.1-sources.jar',
+  deps = [
+    ':dropwizard-core',
+    ':dropwizard-servlets'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'dropwizard-client',
+  maven_coords = 'io.dropwizard:dropwizard-client:jar:0.9.1',
+  binary_jar = 'dropwizard-client-0.9.1.jar',
+  source_jar = 'dropwizard-client-0.9.1-sources.jar',
+  deps = [
+    ':dropwizard-core',
+    '//third-party/connectors:jersey-apache-connector',
+    '//third-party/core:jersey-client',
+    '//third-party/httpcomponents:httpclient',
+    '//third-party/metrics:metrics-httpclient'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'dropwizard-configuration',
+  maven_coords = 'io.dropwizard:dropwizard-configuration:jar:0.9.1',
+  binary_jar = 'dropwizard-configuration-0.9.1.jar',
+  source_jar = 'dropwizard-configuration-0.9.1-sources.jar',
+  deps = [
+    ':dropwizard-jackson',
+    ':dropwizard-validation',
+    '//third-party/commons:commons-lang3',
+    '//third-party/dataformat:jackson-dataformat-yaml'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'dropwizard-core',
+  maven_coords = 'io.dropwizard:dropwizard-core:jar:0.9.1',
+  binary_jar = 'dropwizard-core-0.9.1.jar',
+  source_jar = 'dropwizard-core-0.9.1-sources.jar',
+  deps = [
+    ':dropwizard-configuration',
+    ':dropwizard-jackson',
+    ':dropwizard-jersey',
+    ':dropwizard-jetty',
+    ':dropwizard-lifecycle',
+    ':dropwizard-logging',
+    ':dropwizard-metrics',
+    ':dropwizard-servlets',
+    ':dropwizard-util',
+    ':dropwizard-validation',
+    '//third-party/argparse4j:argparse4j',
+    '//third-party/metrics:metrics-core',
+    '//third-party/metrics:metrics-healthchecks',
+    '//third-party/metrics:metrics-jvm',
+    '//third-party/metrics:metrics-servlets',
+    '//third-party/setuid:jetty-setuid-java'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'dropwizard-forms',
+  maven_coords = 'io.dropwizard:dropwizard-forms:jar:0.9.1',
+  binary_jar = 'dropwizard-forms-0.9.1.jar',
+  source_jar = 'dropwizard-forms-0.9.1-sources.jar',
+  deps = [
+    ':dropwizard-core',
+    '//third-party/media:jersey-media-multipart'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'dropwizard-gelf',
+  maven_coords = 'net.gini.dropwizard:dropwizard-gelf:jar:0.9.2-1',
+  binary_jar = 'dropwizard-gelf-0.9.2-1.jar',
+  source_jar = 'dropwizard-gelf-0.9.2-1-sources.jar',
+  deps = [
+    ':dropwizard-core',
+    '//third-party/moocar:logback-gelf'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'dropwizard-jackson',
+  maven_coords = 'io.dropwizard:dropwizard-jackson:jar:0.9.1',
+  binary_jar = 'dropwizard-jackson-0.9.1.jar',
+  source_jar = 'dropwizard-jackson-0.9.1-sources.jar',
+  deps = [
+    ':dropwizard-util',
+    '//third-party/core:jackson-annotations',
+    '//third-party/core:jackson-core',
+    '//third-party/core:jackson-databind',
+    '//third-party/datatype:jackson-datatype-guava',
+    '//third-party/datatype:jackson-datatype-jdk7',
+    '//third-party/datatype:jackson-datatype-joda',
+    '//third-party/guava:guava',
+    '//third-party/logback:logback-classic',
+    '//third-party/module:jackson-module-afterburner',
+    '//third-party/slf4j:slf4j-api'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'dropwizard-jersey',
+  maven_coords = 'io.dropwizard:dropwizard-jersey:jar:0.9.1',
+  binary_jar = 'dropwizard-jersey-0.9.1.jar',
+  source_jar = 'dropwizard-jersey-0.9.1-sources.jar',
+  deps = [
+    ':dropwizard-jackson',
+    ':dropwizard-logging',
+    ':dropwizard-validation',
+    '//third-party/commons:commons-lang3',
+    '//third-party/containers:jersey-container-servlet',
+    '//third-party/core:jersey-server',
+    '//third-party/ext:jersey-bean-validation',
+    '//third-party/ext:jersey-metainf-services',
+    '//third-party/jaxrs:jackson-jaxrs-json-provider',
+    '//third-party/jetty:jetty-continuation',
+    '//third-party/jetty:jetty-server',
+    '//third-party/jetty:jetty-webapp',
+    '//third-party/metrics:metrics-jersey2'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'dropwizard-jetty',
+  maven_coords = 'io.dropwizard:dropwizard-jetty:jar:0.9.1',
+  binary_jar = 'dropwizard-jetty-0.9.1.jar',
+  source_jar = 'dropwizard-jetty-0.9.1-sources.jar',
+  deps = [
+    ':dropwizard-logging',
+    '//third-party/jetty:jetty-http',
+    '//third-party/jetty:jetty-server',
+    '//third-party/jetty:jetty-servlet',
+    '//third-party/jetty:jetty-servlets',
+    '//third-party/metrics:metrics-jetty9',
+    '//third-party/servlet:javax.servlet-api'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'dropwizard-lifecycle',
+  maven_coords = 'io.dropwizard:dropwizard-lifecycle:jar:0.9.1',
+  binary_jar = 'dropwizard-lifecycle-0.9.1.jar',
+  source_jar = 'dropwizard-lifecycle-0.9.1-sources.jar',
+  deps = [
+    ':dropwizard-util',
+    '//third-party/guava:guava',
+    '//third-party/jetty:jetty-server',
+    '//third-party/slf4j:slf4j-api'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'dropwizard-logging',
+  maven_coords = 'io.dropwizard:dropwizard-logging:jar:0.9.1',
+  binary_jar = 'dropwizard-logging-0.9.1.jar',
+  source_jar = 'dropwizard-logging-0.9.1-sources.jar',
+  deps = [
+    ':dropwizard-jackson',
+    ':dropwizard-validation',
+    '//third-party/jetty:jetty-util',
+    '//third-party/logback:logback-classic',
+    '//third-party/logback:logback-core',
+    '//third-party/metrics:metrics-logback',
+    '//third-party/slf4j:jcl-over-slf4j',
+    '//third-party/slf4j:jul-to-slf4j',
+    '//third-party/slf4j:log4j-over-slf4j',
+    '//third-party/slf4j:slf4j-api'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'dropwizard-metrics',
+  maven_coords = 'io.dropwizard:dropwizard-metrics:jar:0.9.1',
+  binary_jar = 'dropwizard-metrics-0.9.1.jar',
+  source_jar = 'dropwizard-metrics-0.9.1-sources.jar',
+  deps = [
+    ':dropwizard-jackson',
+    ':dropwizard-lifecycle',
+    ':dropwizard-validation',
+    '//third-party/metrics:metrics-core',
+    '//third-party/slf4j:slf4j-api'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'dropwizard-metrics-graphite',
+  maven_coords = 'io.dropwizard:dropwizard-metrics-graphite:jar:0.9.1',
+  binary_jar = 'dropwizard-metrics-graphite-0.9.1.jar',
+  source_jar = 'dropwizard-metrics-graphite-0.9.1-sources.jar',
+  deps = [
+    ':dropwizard-metrics',
+    '//third-party/metrics:metrics-graphite'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'dropwizard-servlets',
+  maven_coords = 'io.dropwizard:dropwizard-servlets:jar:0.9.1',
+  binary_jar = 'dropwizard-servlets-0.9.1.jar',
+  source_jar = 'dropwizard-servlets-0.9.1-sources.jar',
+  deps = [
+    ':dropwizard-util',
+    '//third-party/logback:logback-classic',
+    '//third-party/metrics:metrics-annotation',
+    '//third-party/metrics:metrics-core',
+    '//third-party/servlet:javax.servlet-api',
+    '//third-party/slf4j:slf4j-api'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'dropwizard-util',
+  maven_coords = 'io.dropwizard:dropwizard-util:jar:0.9.1',
+  binary_jar = 'dropwizard-util-0.9.1.jar',
+  source_jar = 'dropwizard-util-0.9.1-sources.jar',
+  deps = [
+    '//third-party/core:jackson-annotations',
+    '//third-party/findbugs:jsr305',
+    '//third-party/guava:guava',
+    '//third-party/joda-time:joda-time'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'dropwizard-validation',
+  maven_coords = 'io.dropwizard:dropwizard-validation:jar:0.9.1',
+  binary_jar = 'dropwizard-validation-0.9.1.jar',
+  source_jar = 'dropwizard-validation-0.9.1-sources.jar',
+  deps = [
+    ':dropwizard-util',
+    '//third-party/glassfish:javax.el',
+    '//third-party/hibernate:hibernate-validator'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+

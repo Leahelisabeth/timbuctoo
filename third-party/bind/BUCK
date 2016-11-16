@@ -1,0 +1,30 @@
+prebuilt_jar(
+  name = 'jaxb-api',
+  maven_coords = 'javax.xml.bind:jaxb-api:jar:2.2.2',
+  binary_jar = 'jaxb-api-2.2.2.jar',
+  source_jar = 'jaxb-api-2.2.2-sources.jar',
+  deps = [
+    '//third-party/activation:activation',
+    '//third-party/stream:stax-api'
+  ],
+  visibility = [
+    '//third-party/jersey:jersey-core',
+    '//third-party/jersey:jersey-server',
+    '//third-party/media:jersey-media-jaxb',
+    '//third-party/module:jackson-module-jaxb-annotations'
+  ],
+)
+
+prebuilt_jar(
+  name = 'jaxb-impl',
+  maven_coords = 'com.sun.xml.bind:jaxb-impl:jar:2.2.3-1',
+  binary_jar = 'jaxb-impl-2.2.3-1.jar',
+  source_jar = 'jaxb-impl-2.2.3-1-sources.jar',
+  deps = [
+    ':jaxb-api'
+  ],
+  visibility = [
+    '//third-party/jersey:jersey-json'
+  ],
+)
+

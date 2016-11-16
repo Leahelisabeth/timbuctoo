@@ -1,0 +1,16 @@
+prebuilt_jar(
+  name = 'commons-httpclient',
+  maven_coords = 'commons-httpclient:commons-httpclient:jar:3.1',
+  binary_jar = 'commons-httpclient-3.1.jar',
+  source_jar = 'commons-httpclient-3.1-sources.jar',
+  deps = [
+    '//third-party/commons-codec:commons-codec',
+    '//third-party/commons-logging:commons-logging'
+  ],
+  visibility = [
+    '//third-party/ivy:ivy',
+    '//third-party/juliusdavies:not-yet-commons-ssl',
+    '//third-party/opensaml:openws'
+  ],
+)
+

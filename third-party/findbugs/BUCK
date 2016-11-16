@@ -1,0 +1,10 @@
+prebuilt_jar(
+  name = 'jsr305',
+  maven_coords = 'com.google.code.findbugs:jsr305:jar:3.0.1',
+  binary_jar = 'jsr305-3.0.1.jar',
+  source_jar = 'jsr305-3.0.1-sources.jar',
+  visibility = [
+    'PUBLIC'
+  ],
+)
+

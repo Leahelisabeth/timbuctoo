@@ -1,0 +1,10 @@
+prebuilt_jar(
+  name = 'javax.el',
+  maven_coords = 'org.glassfish:javax.el:jar:3.0.0',
+  binary_jar = 'javax.el-3.0.0.jar',
+  source_jar = 'javax.el-3.0.0-sources.jar',
+  visibility = [
+    'PUBLIC'
+  ],
+)
+

@@ -1,0 +1,10 @@
+prebuilt_jar(
+  name = 'jbcrypt',
+  maven_coords = 'org.mindrot:jbcrypt:jar:0.3m',
+  binary_jar = 'jbcrypt-0.3m.jar',
+  source_jar = 'jbcrypt-0.3m-sources.jar',
+  visibility = [
+    'PUBLIC'
+  ],
+)
+

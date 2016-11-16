@@ -1,0 +1,14 @@
+prebuilt_jar(
+  name = 'xml-resolver',
+  maven_coords = 'xml-resolver:xml-resolver:jar:1.2',
+  binary_jar = 'xml-resolver-1.2.jar',
+  source_jar = 'xml-resolver-1.2-sources.jar',
+  visibility = [
+    '//third-party/commons-configuration:commons-configuration',
+    '//third-party/opensaml:opensaml',
+    '//third-party/opensaml:openws',
+    '//third-party/opensaml:xmltooling',
+    '//third-party/xerces:xercesImpl'
+  ],
+)
+

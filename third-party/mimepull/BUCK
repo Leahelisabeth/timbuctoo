@@ -1,0 +1,10 @@
+prebuilt_jar(
+  name = 'mimepull',
+  maven_coords = 'org.jvnet.mimepull:mimepull:jar:1.9.6',
+  binary_jar = 'mimepull-1.9.6.jar',
+  source_jar = 'mimepull-1.9.6-sources.jar',
+  visibility = [
+    'PUBLIC'
+  ],
+)
+

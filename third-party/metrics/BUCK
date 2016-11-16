@@ -1,0 +1,164 @@
+prebuilt_jar(
+  name = 'metrics-annotation',
+  maven_coords = 'io.dropwizard.metrics:metrics-annotation:jar:3.1.2',
+  binary_jar = 'metrics-annotation-3.1.2.jar',
+  source_jar = 'metrics-annotation-3.1.2-sources.jar',
+  deps = [
+    '//third-party/slf4j:slf4j-api'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'metrics-core',
+  maven_coords = 'io.dropwizard.metrics:metrics-core:jar:3.1.2',
+  binary_jar = 'metrics-core-3.1.2.jar',
+  source_jar = 'metrics-core-3.1.2-sources.jar',
+  deps = [
+    '//third-party/slf4j:slf4j-api'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'metrics-graphite',
+  maven_coords = 'io.dropwizard.metrics:metrics-graphite:jar:3.1.2',
+  binary_jar = 'metrics-graphite-3.1.2.jar',
+  source_jar = 'metrics-graphite-3.1.2-sources.jar',
+  deps = [
+    ':metrics-core',
+    '//third-party/slf4j:slf4j-api'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'metrics-healthchecks',
+  maven_coords = 'io.dropwizard.metrics:metrics-healthchecks:jar:3.1.2',
+  binary_jar = 'metrics-healthchecks-3.1.2.jar',
+  source_jar = 'metrics-healthchecks-3.1.2-sources.jar',
+  deps = [
+    ':metrics-jvm',
+    '//third-party/slf4j:slf4j-api'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'metrics-httpclient',
+  maven_coords = 'io.dropwizard.metrics:metrics-httpclient:jar:3.1.2',
+  binary_jar = 'metrics-httpclient-3.1.2.jar',
+  source_jar = 'metrics-httpclient-3.1.2-sources.jar',
+  deps = [
+    ':metrics-core',
+    '//third-party/httpcomponents:httpclient',
+    '//third-party/slf4j:slf4j-api'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'metrics-jersey2',
+  maven_coords = 'io.dropwizard.metrics:metrics-jersey2:jar:3.1.2',
+  binary_jar = 'metrics-jersey2-3.1.2.jar',
+  source_jar = 'metrics-jersey2-3.1.2-sources.jar',
+  deps = [
+    ':metrics-annotation',
+    ':metrics-core',
+    '//third-party/core:jersey-server',
+    '//third-party/slf4j:slf4j-api'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'metrics-jetty9',
+  maven_coords = 'io.dropwizard.metrics:metrics-jetty9:jar:3.1.2',
+  binary_jar = 'metrics-jetty9-3.1.2.jar',
+  source_jar = 'metrics-jetty9-3.1.2-sources.jar',
+  deps = [
+    ':metrics-core',
+    '//third-party/jetty:jetty-server',
+    '//third-party/slf4j:slf4j-api'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'metrics-json',
+  maven_coords = 'io.dropwizard.metrics:metrics-json:jar:3.1.2',
+  binary_jar = 'metrics-json-3.1.2.jar',
+  source_jar = 'metrics-json-3.1.2-sources.jar',
+  deps = [
+    ':metrics-core',
+    ':metrics-healthchecks',
+    '//third-party/core:jackson-databind',
+    '//third-party/slf4j:slf4j-api'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'metrics-jvm',
+  maven_coords = 'io.dropwizard.metrics:metrics-jvm:jar:3.1.2',
+  binary_jar = 'metrics-jvm-3.1.2.jar',
+  source_jar = 'metrics-jvm-3.1.2-sources.jar',
+  deps = [
+    ':metrics-core',
+    '//third-party/slf4j:slf4j-api'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'metrics-logback',
+  maven_coords = 'io.dropwizard.metrics:metrics-logback:jar:3.1.2',
+  binary_jar = 'metrics-logback-3.1.2.jar',
+  source_jar = 'metrics-logback-3.1.2-sources.jar',
+  deps = [
+    ':metrics-core',
+    '//third-party/logback:logback-classic',
+    '//third-party/slf4j:slf4j-api'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'metrics-servlets',
+  maven_coords = 'io.dropwizard.metrics:metrics-servlets:jar:3.1.2',
+  binary_jar = 'metrics-servlets-3.1.2.jar',
+  source_jar = 'metrics-servlets-3.1.2-sources.jar',
+  deps = [
+    ':metrics-core',
+    ':metrics-healthchecks',
+    ':metrics-json',
+    ':metrics-jvm',
+    '//third-party/core:jackson-databind',
+    '//third-party/servlet:javax.servlet-api',
+    '//third-party/slf4j:slf4j-api'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+

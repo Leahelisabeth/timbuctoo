@@ -1,0 +1,68 @@
+prebuilt_jar(
+  name = 'gremlin-core',
+  maven_coords = 'org.apache.tinkerpop:gremlin-core:jar:3.1.0-incubating',
+  binary_jar = 'gremlin-core-3.1.0-incubating.jar',
+  source_jar = 'gremlin-core-3.1.0-incubating-sources.jar',
+  deps = [
+    ':gremlin-shaded',
+    '//third-party/carrotsearch:hppc',
+    '//third-party/commons-configuration:commons-configuration',
+    '//third-party/javatuples:javatuples',
+    '//third-party/jcabi:jcabi-manifests',
+    '//third-party/slf4j:jcl-over-slf4j',
+    '//third-party/slf4j:slf4j-log4j12',
+    '//third-party/yaml:snakeyaml'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'gremlin-groovy',
+  maven_coords = 'org.apache.tinkerpop:gremlin-groovy:jar:3.1.0-incubating',
+  binary_jar = 'gremlin-groovy-3.1.0-incubating.jar',
+  source_jar = 'gremlin-groovy-3.1.0-incubating-sources.jar',
+  deps = [
+    ':gremlin-core',
+    '//third-party/commons:commons-lang3',
+    '//third-party/groovy:groovy',
+    '//third-party/groovy:groovy-groovysh',
+    '//third-party/groovy:groovy-json',
+    '//third-party/groovy:groovy-jsr223',
+    '//third-party/ivy:ivy',
+    '//third-party/mindrot:jbcrypt'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'gremlin-shaded',
+  maven_coords = 'org.apache.tinkerpop:gremlin-shaded:jar:3.1.0-incubating',
+  binary_jar = 'gremlin-shaded-3.1.0-incubating.jar',
+  source_jar = 'gremlin-shaded-3.1.0-incubating-sources.jar',
+  deps = [
+    '//third-party/core:jackson-databind'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'neo4j-gremlin',
+  maven_coords = 'org.apache.tinkerpop:neo4j-gremlin:jar:3.1.0-incubating',
+  binary_jar = 'neo4j-gremlin-3.1.0-incubating.jar',
+  source_jar = 'neo4j-gremlin-3.1.0-incubating-sources.jar',
+  deps = [
+    ':gremlin-core',
+    ':gremlin-groovy',
+    '//third-party/neo4j:neo4j-tinkerpop-api'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+

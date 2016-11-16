@@ -1,0 +1,13 @@
+prebuilt_jar(
+  name = 'ivy',
+  maven_coords = 'org.apache.ivy:ivy:jar:2.3.0',
+  binary_jar = 'ivy-2.3.0.jar',
+  source_jar = 'ivy-2.3.0-sources.jar',
+  deps = [
+    '//third-party/commons-httpclient:commons-httpclient'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+

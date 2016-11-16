@@ -1,0 +1,14 @@
+prebuilt_jar(
+  name = 'jetty-setuid-java',
+  maven_coords = 'org.eclipse.jetty.toolchain.setuid:jetty-setuid-java:jar:1.0.3',
+  binary_jar = 'jetty-setuid-java-1.0.3.jar',
+  source_jar = 'jetty-setuid-java-1.0.3-sources.jar',
+  deps = [
+    '//third-party/jetty:jetty-server',
+    '//third-party/jetty:jetty-util'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+

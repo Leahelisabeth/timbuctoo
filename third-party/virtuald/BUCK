@@ -1,0 +1,10 @@
+prebuilt_jar(
+  name = 'curvesapi',
+  maven_coords = 'com.github.virtuald:curvesapi:jar:1.03',
+  binary_jar = 'curvesapi-1.03.jar',
+  source_jar = 'curvesapi-1.03-sources.jar',
+  visibility = [
+    'PUBLIC'
+  ],
+)
+

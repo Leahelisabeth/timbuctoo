@@ -1,0 +1,56 @@
+prebuilt_jar(
+  name = 'hk2-api',
+  maven_coords = 'org.glassfish.hk2:hk2-api:jar:2.4.0-b31',
+  binary_jar = 'hk2-api-2.4.0-b31.jar',
+  source_jar = 'hk2-api-2.4.0-b31-sources.jar',
+  deps = [
+    ':hk2-utils',
+    ':osgi-resource-locator',
+    '//third-party/external:aopalliance-repackaged',
+    '//third-party/inject:javax.inject'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'hk2-locator',
+  maven_coords = 'org.glassfish.hk2:hk2-locator:jar:2.4.0-b31',
+  binary_jar = 'hk2-locator-2.4.0-b31.jar',
+  source_jar = 'hk2-locator-2.4.0-b31-sources.jar',
+  deps = [
+    ':hk2-api',
+    ':hk2-utils',
+    '//third-party/external:aopalliance-repackaged',
+    '//third-party/external:javax.inject',
+    '//third-party/javassist:javassist'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'hk2-utils',
+  maven_coords = 'org.glassfish.hk2:hk2-utils:jar:2.4.0-b31',
+  binary_jar = 'hk2-utils-2.4.0-b31.jar',
+  source_jar = 'hk2-utils-2.4.0-b31-sources.jar',
+  deps = [
+    '//third-party/inject:javax.inject'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'osgi-resource-locator',
+  maven_coords = 'org.glassfish.hk2:osgi-resource-locator:jar:1.0.1',
+  binary_jar = 'osgi-resource-locator-1.0.1.jar',
+  source_jar = 'osgi-resource-locator-1.0.1-sources.jar',
+  visibility = [
+    'PUBLIC'
+  ],
+)
+

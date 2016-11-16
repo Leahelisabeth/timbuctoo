@@ -1,0 +1,14 @@
+prebuilt_jar(
+  name = 'jsonassert',
+  maven_coords = 'org.skyscreamer:jsonassert:jar:1.1.1',
+  binary_jar = 'jsonassert-1.1.1.jar',
+  source_jar = 'jsonassert-1.1.1-sources.jar',
+  deps = [
+    '//third-party/commons-collections:commons-collections',
+    '//third-party/json:json'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+

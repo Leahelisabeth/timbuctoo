@@ -1,0 +1,24 @@
+prebuilt_jar(
+  name = 'parboiled-core',
+  maven_coords = 'org.parboiled:parboiled-core:jar:1.1.7',
+  binary_jar = 'parboiled-core-1.1.7.jar',
+  source_jar = 'parboiled-core-1.1.7-sources.jar',
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'parboiled-scala_2.11',
+  maven_coords = 'org.parboiled:parboiled-scala_2.11:jar:1.1.7',
+  binary_jar = 'parboiled-scala_2.11-1.1.7.jar',
+  source_jar = 'parboiled-scala_2.11-1.1.7-sources.jar',
+  deps = [
+    ':parboiled-core',
+    '//third-party/scala-lang:scala-library'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+

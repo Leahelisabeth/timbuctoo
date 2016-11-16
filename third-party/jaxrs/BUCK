@@ -1,0 +1,30 @@
+prebuilt_jar(
+  name = 'jackson-jaxrs-base',
+  maven_coords = 'com.fasterxml.jackson.jaxrs:jackson-jaxrs-base:jar:2.6.3',
+  binary_jar = 'jackson-jaxrs-base-2.6.3.jar',
+  source_jar = 'jackson-jaxrs-base-2.6.3-sources.jar',
+  deps = [
+    '//third-party/core:jackson-core',
+    '//third-party/core:jackson-databind'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
+prebuilt_jar(
+  name = 'jackson-jaxrs-json-provider',
+  maven_coords = 'com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:jar:2.6.3',
+  binary_jar = 'jackson-jaxrs-json-provider-2.6.3.jar',
+  source_jar = 'jackson-jaxrs-json-provider-2.6.3-sources.jar',
+  deps = [
+    ':jackson-jaxrs-base',
+    '//third-party/core:jackson-core',
+    '//third-party/core:jackson-databind',
+    '//third-party/module:jackson-module-jaxb-annotations'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+

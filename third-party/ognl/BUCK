@@ -1,0 +1,10 @@
+prebuilt_jar(
+  name = 'ognl',
+  maven_coords = 'ognl:ognl:jar:2.6.9',
+  binary_jar = 'ognl-2.6.9.jar',
+  source_jar = 'ognl-2.6.9-sources.jar',
+  visibility = [
+    '//third-party/concordion:concordion'
+  ],
+)
+

@@ -1,0 +1,13 @@
+prebuilt_jar(
+  name = 'jersey-guava',
+  maven_coords = 'org.glassfish.jersey.bundles.repackaged:jersey-guava:jar:2.22.1',
+  binary_jar = 'jersey-guava-2.22.1.jar',
+  source_jar = 'jersey-guava-2.22.1-sources.jar',
+  deps = [
+    '//third-party/guava:guava'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+

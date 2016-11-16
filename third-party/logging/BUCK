@@ -1,0 +1,14 @@
+prebuilt_jar(
+  name = 'jboss-logging',
+  maven_coords = 'org.jboss.logging:jboss-logging:jar:3.2.1.Final',
+  binary_jar = 'jboss-logging-3.2.1.Final.jar',
+  source_jar = 'jboss-logging-3.2.1.Final-sources.jar',
+  deps = [
+    '//third-party/log4j:log4j',
+    '//third-party/slf4j:slf4j-api'
+  ],
+  visibility = [
+    'PUBLIC'
+  ],
+)
+
