@@ -27,6 +27,8 @@ import nl.knaw.huygens.timbuctoo.core.dto.dataset.CollectionBuilder;
 import nl.knaw.huygens.timbuctoo.core.dto.dataset.ImmutableVresDto;
 import nl.knaw.huygens.timbuctoo.core.dto.property.TimProperty;
 import nl.knaw.huygens.timbuctoo.core.dto.rdf.CreateProperty;
+import nl.knaw.huygens.timbuctoo.core.dto.rdf.CreateRdfRelation;
+import nl.knaw.huygens.timbuctoo.core.dto.rdf.CreateRdfRelationType;
 import nl.knaw.huygens.timbuctoo.core.dto.rdf.ImmutablePredicateInUse;
 import nl.knaw.huygens.timbuctoo.core.dto.rdf.ImmutableValueTypeInUse;
 import nl.knaw.huygens.timbuctoo.core.dto.rdf.PredicateInUse;
@@ -427,6 +429,12 @@ public class TinkerPopOperations implements DataStoreOperations {
   public List<RelationType> getRelationTypes() {
     return traversal.V().has(T.label, LabelP.of("relationtype")).toList().stream()
                     .map(RelationTypeMapper::fromVertex).collect(Collectors.toList());
+  }
+
+  public List<RelationType> getRelationTypes(Vre vre) {
+    return traversal.V().has(T.label, LabelP.of(Vre.DATABASE_LABEL)).has(Vre.VRE_NAME_PROPERTY_NAME, vre.getVreName())
+                    .out("hasRelationType")
+                    .map(v -> RelationTypeMapper.fromVertex(v.get())).toList();
   }
 
 
@@ -1087,6 +1095,16 @@ public class TinkerPopOperations implements DataStoreOperations {
     });
   }
 
+  @Override
+  public void assertRelationType(Vre vre, CreateRdfRelationType relationType) {
+    throw new UnsupportedOperationException("Not implemented yet");
+  }
+
+  @Override
+  public void assertRelation(Vre vre, CreateRdfRelation createRdfRelation) {
+    throw new UnsupportedOperationException("Not implemented yet");
+  }
+
   private Vertex getLastProperty(Object collectionId) {
     return traversal.V(collectionId)
                     .out(HAS_INITIAL_PROPERTY_RELATION_NAME)
@@ -1115,5 +1133,6 @@ public class TinkerPopOperations implements DataStoreOperations {
   Optional<Vertex> getVertexByRdfUri(Vre vre, String uri) {
     return indexHandler.findVertexInRdfIndex(vre, uri);
   }
+
 
 }

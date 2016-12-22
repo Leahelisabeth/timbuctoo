@@ -11,7 +11,9 @@ import nl.knaw.huygens.timbuctoo.core.dto.UpdateEntity;
 import nl.knaw.huygens.timbuctoo.core.dto.UpdateRelation;
 import nl.knaw.huygens.timbuctoo.core.dto.dataset.Collection;
 import nl.knaw.huygens.timbuctoo.core.dto.rdf.CreateProperty;
+import nl.knaw.huygens.timbuctoo.core.dto.rdf.CreateRdfRelation;
 import nl.knaw.huygens.timbuctoo.core.dto.rdf.PredicateInUse;
+import nl.knaw.huygens.timbuctoo.core.dto.rdf.CreateRdfRelationType;
 import nl.knaw.huygens.timbuctoo.core.dto.rdf.RdfProperty;
 import nl.knaw.huygens.timbuctoo.database.tinkerpop.CustomEntityProperties;
 import nl.knaw.huygens.timbuctoo.database.tinkerpop.CustomRelationProperties;
@@ -118,8 +120,12 @@ public interface DataStoreOperations extends AutoCloseable {
   void finishEntities(Vre vre, EntityFinisherHelper entityFinisherHelper);
 
   /**
-   * @param collection the collection to add the properties to
+   * @param collection       the collection to add the properties to
    * @param createProperties the properties to add to the collection
    */
   void addPropertiesToCollection(Collection collection, List<CreateProperty> createProperties);
+
+  void assertRelationType(Vre vre, CreateRdfRelationType relationType);
+
+  void assertRelation(Vre vre, CreateRdfRelation createRdfRelation);
 }

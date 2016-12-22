@@ -69,6 +69,7 @@ import static nl.knaw.huygens.timbuctoo.util.TestGraphBuilder.newGraph;
 import static nl.knaw.huygens.timbuctoo.util.VertexMatcher.likeVertex;
 import static org.apache.tinkerpop.gremlin.process.traversal.P.within;
 import static org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.__.has;
+import static org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.__.in;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.contains;
@@ -2833,6 +2834,18 @@ public class TinkerPopOperationsTest {
         .withProperty("rdfUri", "http://example.org/pred2")
         .withProperty("typeUri", "http://example.org/string")
     ));
+  }
+
+  @Test
+  public void assertRelationAddsARelationTypeToTheVre(){
+    TinkerPopGraphManager graphManager = newGraph().wrap();
+    TinkerPopOperations instance = TinkerPopOperationsStubs.forGraphWrapper(graphManager);
+    Vre vre = instance.ensureVreExists("vre");
+    instance.addCollectionToVre(vre, CreateCollection.defaultCollection());
+    vre = instance.loadVres().getVre("vre");
+
+    List<RelationType> relationTypes = instance.getRelationTypes(vre);
+    assertThat(relationTypes, contains(hasProperty()));
   }
 }
 

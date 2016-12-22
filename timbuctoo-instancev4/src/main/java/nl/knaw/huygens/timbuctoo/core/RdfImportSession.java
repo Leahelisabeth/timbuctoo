@@ -1,6 +1,8 @@
 package nl.knaw.huygens.timbuctoo.core;
 
 import nl.knaw.huygens.timbuctoo.core.dto.CreateCollection;
+import nl.knaw.huygens.timbuctoo.core.dto.rdf.CreateRdfRelation;
+import nl.knaw.huygens.timbuctoo.core.dto.rdf.ImmutableCreateRdfRelationType;
 import nl.knaw.huygens.timbuctoo.core.dto.rdf.PredicateInUse;
 import nl.knaw.huygens.timbuctoo.core.dto.rdf.RdfProperty;
 import nl.knaw.huygens.timbuctoo.core.rdf.PropertyFactory;
@@ -72,6 +74,11 @@ public class RdfImportSession {
 
   public void retractProperty(String rdfUri, RdfProperty property) {
     dataStoreOperations.retractProperty(vre, rdfUri, property);
+  }
+
+  public void assertRelation(CreateRdfRelation createRdfRelation) {
+    dataStoreOperations.assertRelationType(vre, ImmutableCreateRdfRelationType.of(createRdfRelation.getPredicateUri()));
+    dataStoreOperations.assertRelation(vre, createRdfRelation);
   }
 
 

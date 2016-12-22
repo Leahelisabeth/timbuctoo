@@ -4,6 +4,8 @@ import com.google.common.collect.Lists;
 import nl.knaw.huygens.timbuctoo.core.dto.CreateCollection;
 import nl.knaw.huygens.timbuctoo.core.dto.dataset.Collection;
 import nl.knaw.huygens.timbuctoo.core.dto.rdf.CreateProperty;
+import nl.knaw.huygens.timbuctoo.core.dto.rdf.CreateRdfRelation;
+import nl.knaw.huygens.timbuctoo.core.dto.rdf.ImmutableCreateRdfRelation;
 import nl.knaw.huygens.timbuctoo.core.dto.rdf.PredicateInUse;
 import nl.knaw.huygens.timbuctoo.core.rdf.PropertyFactory;
 import nl.knaw.huygens.timbuctoo.model.vre.Vre;
@@ -131,6 +133,25 @@ public class RdfImportSessionTest {
 
     verify(propertyFactory).fromPredicates(predicates);
     verify(dataStoreOperations).addPropertiesToCollection(any(Collection.class), eq(createProperties));
+  }
+
+  @Test
+  public void assertRelationAddsTheRelationTypeToTheVreBeforeCreatingTheRelationItself() {
+    CreateRdfRelation createRdfRelation = ImmutableCreateRdfRelation.of(
+      "http://example.org/relation",
+      "http://example.org/subject",
+      "http://example.org/object"
+    );
+    RdfImportSession instance = RdfImportSession.cleanImportSession(VRE_NAME, dataStoreOperations);
+
+    instance.assertRelation(createRdfRelation);
+
+    InOrder inOrder = inOrder(dataStoreOperations);
+    inOrder.verify(dataStoreOperations).assertRelationType(
+      eq(vre),
+      argThat(hasProperty("relationPredicateUri", equalTo("http://example.org/relation")))
+    );
+    inOrder.verify(dataStoreOperations).assertRelation(vre, createRdfRelation);
   }
 
 }
