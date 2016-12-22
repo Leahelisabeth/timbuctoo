@@ -32,6 +32,7 @@ import nl.knaw.huygens.timbuctoo.core.dto.rdf.ImmutableValueTypeInUse;
 import nl.knaw.huygens.timbuctoo.core.dto.rdf.PredicateInUse;
 import nl.knaw.huygens.timbuctoo.core.dto.rdf.RdfProperty;
 import nl.knaw.huygens.timbuctoo.database.tinkerpop.changelistener.ChangeListener;
+import nl.knaw.huygens.timbuctoo.database.tinkerpop.conversion.RelationTypeMapper;
 import nl.knaw.huygens.timbuctoo.database.tinkerpop.conversion.TinkerPopPropertyConverter;
 import nl.knaw.huygens.timbuctoo.database.tinkerpop.conversion.TinkerPopToEntityMapper;
 import nl.knaw.huygens.timbuctoo.logging.Logmarkers;
@@ -208,7 +209,7 @@ public class TinkerPopOperations implements DataStoreOperations {
       //.has(T.label, LabelP.of("relationtype"))
       .has("tim_id", typeId.toString())
     )
-      .map(RelationType::relationType);
+      .map(RelationTypeMapper::fromVertex);
   }
 
   private static String[] getEntityTypes(Element element) {
@@ -425,7 +426,7 @@ public class TinkerPopOperations implements DataStoreOperations {
   @Override
   public List<RelationType> getRelationTypes() {
     return traversal.V().has(T.label, LabelP.of("relationtype")).toList().stream()
-                    .map(RelationType::relationType).collect(Collectors.toList());
+                    .map(RelationTypeMapper::fromVertex).collect(Collectors.toList());
   }
 
 

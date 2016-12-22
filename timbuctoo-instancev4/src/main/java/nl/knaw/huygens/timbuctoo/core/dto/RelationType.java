@@ -12,20 +12,6 @@ import static nl.knaw.huygens.timbuctoo.model.GraphReadUtils.getProp;
 @Value.Immutable
 public abstract class RelationType {
 
-  public static RelationType relationType(Vertex vertex) {
-    return ImmutableRelationType
-      .builder()
-      .outName(getProp(vertex, "relationtype_regularName", String.class).orElse("<no name>"))
-      .inverseName(getProp(vertex, "relationtype_inverseName", String.class).orElse("<no name>"))
-      .sourceTypeName(getProp(vertex, "relationtype_sourceTypeName", String.class).orElse(""))
-      .targetTypeName(getProp(vertex, "relationtype_targetTypeName", String.class).orElse(""))
-      .isReflexive(getProp(vertex, "relationtype_reflexive", Boolean.class).orElse(false))
-      .isSymmetric(getProp(vertex, "relationtype_symmetric", Boolean.class).orElse(false))
-      .isDerived(getProp(vertex, "relationtype_derived", Boolean.class).orElse(false))
-      .timId(UUID.fromString(getProp(vertex, "tim_id", String.class).orElse("")))
-      .build();
-  }
-
   public static RelationType relationType(String sourceType, String outName, String targetType, String inName,
                                           boolean isReflexive, boolean isSymmetric, boolean isDerived, UUID timId) {
     return ImmutableRelationType
