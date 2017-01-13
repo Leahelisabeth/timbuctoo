@@ -161,7 +161,7 @@
     <maven-javadoc.version>2.9</maven-javadoc.version>
     <maven-source.version>2.2.1</maven-source.version>
     <tomcat6_plugin.version>2.2</tomcat6_plugin.version>
-    <wagon-ssh.version>2.2</wagon-ssh.version>
+    <wagon-ssh.version>2.10</wagon-ssh.version>
   </properties>
 
   <dependencies>
